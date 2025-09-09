@@ -1,0 +1,27 @@
+
+vampiro.png
+size: 715,438
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+vampiro_base
+  rotate: true
+  xy: 2,2
+  size: 434,512
+  orig: 512,512
+  offset: 0,0
+  index: -1
+vampiro_eyes
+  rotate: false
+  xy: 518,2
+  size: 130,27
+  orig: 512,512
+  offset: 0,0
+  index: -1
+vampiro_fangs
+  rotate: false
+  xy: 652,2
+  size: 61,28
+  orig: 512,512
+  offset: 0,0
+  index: -1

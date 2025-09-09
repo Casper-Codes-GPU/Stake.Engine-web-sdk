@@ -40,8 +40,8 @@ export default {
 	H4: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h4.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/vampiro/vampiro.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/vampiro/vampiro.json', import.meta.url).href,
 			scale: 2,
 		},
 	},

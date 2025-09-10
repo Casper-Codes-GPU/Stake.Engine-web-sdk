@@ -282,4 +282,13 @@ export default {
 		src: new URL('../../assets/sprites/background/haunted-house-bg.png', import.meta.url).href,
 		preload: true,
 	},
+	cofre: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/cofresydiamantes/PRUEBA2-0.png', import.meta.url).href,
+		preload: true,
+	},
+	spritePrueba: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/spritePrueba/spritesheet.json', import.meta.url).href,
+	},
 } as const;

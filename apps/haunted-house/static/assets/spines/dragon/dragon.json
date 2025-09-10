@@ -1,0 +1,121 @@
+{
+  "skeleton": {
+    "hash": "dragon-demo-v1.0",
+    "spine": "3.8.95",
+    "x": -512,
+    "y": -512,
+    "width": 1024,
+    "height": 1024
+  },
+  "bones": [
+    { "name": "root" },
+    { "name": "bone", "parent": "root", "x": 0, "y": 50, "rotation": 15 },
+    { "name": "shenti", "parent": "bone", "length": 209, "y": -4.69, "rotation": -106.65 },
+    { "name": "bozixia", "parent": "shenti", "length": 96, "x": 203.63, "y": -2.93, "rotation": 54.16 },
+    { "name": "bozishang", "parent": "bozixia", "length": 62, "x": 86.13, "y": -3.76, "rotation": 35.23 },
+    { "name": "tou", "parent": "bozishang", "length": 84, "x": 55.05, "y": -2.61, "rotation": 17.89 },
+    { "name": "weiba1", "parent": "bone", "length": 137, "x": -2.34, "y": -1.16, "rotation": 165.01 },
+    { "name": "weiba2", "parent": "weiba1", "length": 66, "x": 141.22, "y": 0.91, "rotation": 27.7 },
+    { "name": "chibangL1", "parent": "shenti", "length": 60, "x": 116.89, "y": 56.72, "rotation": -54.67 },
+    { "name": "chibangL3", "parent": "chibangL1", "length": 270, "x": 56.91, "y": -0.22, "rotation": 43.37 },
+    { "name": "chibangR1", "parent": "shenti", "length": 76, "x": 166.51, "y": -34.93, "rotation": -93.15 },
+    { "name": "chibangR2", "parent": "chibangR1", "length": 148, "x": 58.47, "y": 8.06, "rotation": 85.15 }
+  ],
+  "slots": [
+    { "name": "tail", "bone": "weiba1", "attachment": "tail" },
+    { "name": "chibangL2", "bone": "chibangL3", "attachment": "chibangL2" },
+    { "name": "chibangL1", "bone": "chibangL1", "attachment": "chibangL1" },
+    { "name": "shenti", "bone": "shenti", "attachment": "shenti" },
+    { "name": "bozixia", "bone": "bozixia", "attachment": "bozixia" },
+    { "name": "bozishang", "bone": "bozishang", "attachment": "bozishang" },
+    { "name": "tou", "bone": "tou", "attachment": "tou" },
+    { "name": "chibangR2", "bone": "chibangR2", "attachment": "chibangR2" },
+    { "name": "chibangR1", "bone": "chibangR1", "attachment": "chibangR1" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "tail": {
+          "tail": { "width": 447, "height": 191, "x": 0, "y": 0 }
+        },
+        "chibangL2": {
+          "chibangL2": { "width": 270, "height": 273, "x": 0, "y": 0 }
+        },
+        "chibangL1": {
+          "chibangL1": { "width": 95, "height": 62, "x": 0, "y": 0 }
+        },
+        "shenti": {
+          "shenti": { "width": 239, "height": 267, "x": 0, "y": 0 }
+        },
+        "bozixia": {
+          "bozixia": { "width": 263, "height": 194, "x": 0, "y": 0 }
+        },
+        "bozishang": {
+          "bozishang": { "width": 301, "height": 230, "x": 0, "y": 0 }
+        },
+        "tou": {
+          "tou": { "width": 176, "height": 213, "x": 0, "y": 0 }
+        },
+        "chibangR2": {
+          "chibangR2": { "width": 323, "height": 339, "x": 0, "y": 0 }
+        },
+        "chibangR1": {
+          "chibangR1": { "width": 109, "height": 73, "x": 0, "y": 0 }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "dragon_test": {
+      "bones": {
+        "bone": {
+          "translate": [
+            { "time": 0, "x": 0, "y": 0 },
+            { "time": 0.5, "x": 7.11, "y": -10.67 },
+            { "time": 1.0, "x": 0, "y": -20.01 },
+            { "time": 1.5, "x": -8.54, "y": -9.33 },
+            { "time": 2.0, "x": 0, "y": 0 }
+          ]
+        },
+        "weiba1": {
+          "rotate": [
+            { "time": 0, "angle": 0 },
+            { "time": 1.0, "angle": 1.36 },
+            { "time": 2.0, "angle": 0 }
+          ]
+        },
+        "weiba2": {
+          "rotate": [
+            { "time": 0, "angle": -0.09 },
+            { "time": 1.0, "angle": 2.22 },
+            { "time": 2.0, "angle": -0.09 }
+          ]
+        },
+        "chibangR1": {
+          "rotate": [
+            { "time": 0, "angle": 0 },
+            { "time": 1.0, "angle": 8.28 },
+            { "time": 2.0, "angle": 0 }
+          ]
+        },
+        "bozishang": {
+          "rotate": [
+            { "time": 0, "angle": 0 },
+            { "time": 0.5, "angle": 1.16 },
+            { "time": 1.0, "angle": -1.98 },
+            { "time": 1.5, "angle": -2.46 },
+            { "time": 2.0, "angle": 0 }
+          ]
+        },
+        "tou": {
+          "scale": [
+            { "time": 0, "x": 1, "y": 1 },
+            { "time": 1.0, "x": 1.1, "y": 1.1 },
+            { "time": 2.0, "x": 1, "y": 1 }
+          ]
+        }
+      }
+    }
+  }
+}

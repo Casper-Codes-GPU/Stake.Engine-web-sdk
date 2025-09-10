@@ -242,7 +242,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H1',
 			animationName: 'h1',
-			sizeRatios: { width: 0.5 * 1.15, height: HIGH_SYMBOL_SIZE * 0.57 },
+			sizeRatios: { width: 0.5, height: HIGH_SYMBOL_SIZE * 0.57 },
 		},
 		postWinStatic: h1Static,
 		static: h1Static,

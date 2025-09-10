@@ -1,0 +1,184 @@
+{"frames": {
+
+"COFRE_MADERA__00000.png":
+{
+	"frame": {"x":793,"y":518,"w":203,"h":676},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":89,"w":203,"h":676},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00001.png":
+{
+	"frame": {"x":1,"y":1576,"w":203,"h":678},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":87,"w":203,"h":678},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00002.png":
+{
+	"frame": {"x":753,"y":1133,"w":203,"h":681},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":84,"w":203,"h":681},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00009.png":
+{
+	"frame": {"x":681,"y":1543,"w":203,"h":669},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":96,"w":203,"h":669},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00010.png":
+{
+	"frame": {"x":668,"y":1338,"w":203,"h":673},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":92,"w":203,"h":673},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00011.png":
+{
+	"frame": {"x":1,"y":1781,"w":203,"h":677},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":88,"w":203,"h":677},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00018.png":
+{
+	"frame": {"x":1484,"y":1,"w":203,"h":658},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":107,"w":203,"h":658},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00019.png":
+{
+	"frame": {"x":1471,"y":661,"w":203,"h":664},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":101,"w":203,"h":664},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00020.png":
+{
+	"frame": {"x":681,"y":1748,"w":203,"h":672},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":93,"w":203,"h":672},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00025.png":
+{
+	"frame": {"x":753,"y":723,"w":203,"h":706},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":59,"w":203,"h":706},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00026.png":
+{
+	"frame": {"x":753,"y":928,"w":203,"h":700},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":65,"w":203,"h":700},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00035.png":
+{
+	"frame": {"x":1676,"y":661,"w":203,"h":664},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":101,"w":203,"h":664},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00036.png":
+{
+	"frame": {"x":1436,"y":1327,"w":203,"h":665},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":100,"w":203,"h":665},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00037.png":
+{
+	"frame": {"x":1641,"y":1327,"w":203,"h":665},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":310,"y":100,"w":203,"h":665},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00038.png":
+{
+	"frame": {"x":1,"y":1345,"w":229,"h":665},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":284,"y":100,"w":229,"h":665},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00039.png":
+{
+	"frame": {"x":793,"y":251,"w":265,"h":664},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":248,"y":100,"w":265,"h":664},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00042.png":
+{
+	"frame": {"x":382,"y":667,"w":369,"h":664},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":144,"y":100,"w":369,"h":664},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00045.png":
+{
+	"frame": {"x":1,"y":1,"w":417,"h":664},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":100,"w":417,"h":664},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00048.png":
+{
+	"frame": {"x":1,"y":667,"w":379,"h":676},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":134,"y":88,"w":379,"h":676},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00049.png":
+{
+	"frame": {"x":420,"y":1,"w":371,"h":664},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":142,"y":100,"w":371,"h":664},
+	"sourceSize": {"w":1920,"h":1080}
+},
+"COFRE_MADERA__00056.png":
+{
+	"frame": {"x":793,"y":1,"w":248,"h":689},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":265,"y":75,"w":248,"h":689},
+	"sourceSize": {"w":1920,"h":1080}
+}},
+"animations": {
+	"COFRE_MADERA_": ["COFRE_MADERA__00000.png","COFRE_MADERA__00001.png","COFRE_MADERA__00002.png","COFRE_MADERA__00003.png","COFRE_MADERA__00004.png","COFRE_MADERA__00005.png","COFRE_MADERA__00006.png","COFRE_MADERA__00007.png","COFRE_MADERA__00008.png","COFRE_MADERA__00009.png","COFRE_MADERA__00010.png","COFRE_MADERA__00011.png","COFRE_MADERA__00012.png","COFRE_MADERA__00013.png","COFRE_MADERA__00014.png","COFRE_MADERA__00015.png","COFRE_MADERA__00016.png","COFRE_MADERA__00017.png","COFRE_MADERA__00018.png","COFRE_MADERA__00019.png","COFRE_MADERA__00020.png","COFRE_MADERA__00021.png","COFRE_MADERA__00022.png","COFRE_MADERA__00023.png","COFRE_MADERA__00024.png","COFRE_MADERA__00025.png","COFRE_MADERA__00026.png","COFRE_MADERA__00027.png","COFRE_MADERA__00028.png","COFRE_MADERA__00029.png","COFRE_MADERA__00030.png","COFRE_MADERA__00031.png","COFRE_MADERA__00032.png","COFRE_MADERA__00033.png","COFRE_MADERA__00034.png","COFRE_MADERA__00035.png","COFRE_MADERA__00036.png","COFRE_MADERA__00037.png","COFRE_MADERA__00038.png","COFRE_MADERA__00039.png","COFRE_MADERA__00040.png","COFRE_MADERA__00041.png","COFRE_MADERA__00042.png","COFRE_MADERA__00043.png","COFRE_MADERA__00044.png","COFRE_MADERA__00045.png","COFRE_MADERA__00046.png","COFRE_MADERA__00047.png","COFRE_MADERA__00048.png","COFRE_MADERA__00049.png","COFRE_MADERA__00050.png","COFRE_MADERA__00051.png","COFRE_MADERA__00052.png","COFRE_MADERA__00053.png","COFRE_MADERA__00054.png","COFRE_MADERA__00055.png","COFRE_MADERA__00056.png","COFRE_MADERA__00057.png","COFRE_MADERA__00058.png","COFRE_MADERA__00059.png","COFRE_MADERA__00060.png","COFRE_MADERA__00061.png","COFRE_MADERA__00062.png","COFRE_MADERA__00063.png","COFRE_MADERA__00064.png","COFRE_MADERA__00065.png","COFRE_MADERA__00066.png","COFRE_MADERA__00067.png","COFRE_MADERA__00068.png","COFRE_MADERA__00069.png","COFRE_MADERA__00070.png","COFRE_MADERA__00071.png","COFRE_MADERA__00072.png","COFRE_MADERA__00073.png","COFRE_MADERA__00074.png","COFRE_MADERA__00075.png","COFRE_MADERA__00076.png","COFRE_MADERA__00077.png","COFRE_MADERA__00078.png","COFRE_MADERA__00079.png","COFRE_MADERA__00080.png","COFRE_MADERA__00081.png","COFRE_MADERA__00082.png","COFRE_MADERA__00083.png","COFRE_MADERA__00084.png","COFRE_MADERA__00085.png","COFRE_MADERA__00086.png","COFRE_MADERA__00087.png","COFRE_MADERA__00088.png","COFRE_MADERA__00089.png","COFRE_MADERA__00090.png","COFRE_MADERA__00091.png","COFRE_MADERA__00092.png","COFRE_MADERA__00093.png","COFRE_MADERA__00094.png","COFRE_MADERA__00095.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "PRUEBA2-0.png",
+	"format": "RGBA8888",
+	"size": {"w":1880,"h":1993},
+	"scale": "1",
+	"related_multi_packs": [ "PRUEBA2-1.json", "PRUEBA2-2.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:cc25cdfe33970100ee73da5434e067dd:28440279526d4b1bfb8fef2c00116710:539ce4ee2026d52fbea5d9d2793a2ea6$"
+}
+}

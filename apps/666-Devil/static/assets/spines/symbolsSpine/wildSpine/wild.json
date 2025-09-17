@@ -1,0 +1,58 @@
+{
+  "skeleton": {
+    "hash": "wild-v1.0",
+    "spine": "4.1.00",
+    "x": -64,
+    "y": -64,
+    "width": 128,
+    "height": 128,
+    "fps": 24
+  },
+  "bones": [
+    { "name": "root" },
+    { "name": "wild_bone", "parent": "root" }
+  ],
+  "slots": [
+    { "name": "10-WILD", "bone": "wild_bone", "attachment": "10-WILD" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "10-WILD": {
+          "10-WILD": {
+            "name": "10-WILD",
+            "width": 507,
+            "height": 509,
+            "x": 0,
+            "y": 0,
+            "rotation": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "animtion0": {
+      "bones": {
+        "wild_bone": {
+          "translate": [
+            { "time": 0, "x": 0, "y": 0 },
+            { "time": 0.2, "x": 0, "y": 15 },
+            { "time": 0.4, "x": 0, "y": -8 },
+            { "time": 0.6, "x": 0, "y": 0 }
+          ],
+          "scale": [
+            { "time": 0, "x": 1.0, "y": 1.0 },
+            { "time": 0.15, "x": 0.9, "y": 1.1 },
+            { "time": 0.35, "x": 1.3, "y": 0.7 },
+            { "time": 0.5, "x": 1.05, "y": 0.95 },
+            { "time": 0.6, "x": 1.0, "y": 1.0 }
+          ]
+        }
+      }
+    }
+  }
+}

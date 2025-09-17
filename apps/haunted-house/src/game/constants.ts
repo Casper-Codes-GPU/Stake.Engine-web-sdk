@@ -13,7 +13,7 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 		{
 			name: 'L2',
 		},
-		// Visible rows (5)
+		// Visible rows (4)
 		{
 			name: 'L1',
 		},
@@ -24,11 +24,8 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 			name: 'H2',
 		},
 		{
-			name: 'L1',
+			name: 'H5',
 		},
-		// {
-		// 	name: 'H3',
-		// },
 		// Padding bottom
 		{
 			name: 'L2',
@@ -39,7 +36,7 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 		{
 			name: 'H1',
 		},
-		// Visible rows (5)
+		// Visible rows (4)
 		{
 			name: 'L5',
 		},
@@ -50,11 +47,8 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 			name: 'H3',
 		},
 		{
-			name: 'L4',
+			name: 'H5',
 		},
-		// {
-		// 	name: 'H1',
-		// },
 		// Padding bottom
 		{
 			name: 'L5',
@@ -65,7 +59,7 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 		{
 			name: 'L3',
 		},
-		// Visible rows (5)
+		// Visible rows (4)
 		{
 			name: 'L5',
 		},
@@ -76,11 +70,8 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 			name: 'H4',
 		},
 		{
-			name: 'L4',
+			name: 'H5',
 		},
-		// {
-		// 	name: 'H2',
-		// },
 		// Padding bottom
 		{
 			name: 'L3',
@@ -91,7 +82,7 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 		{
 			name: 'H4',
 		},
-		// Visible rows (5)
+		// Visible rows (4)
 		{
 			name: 'H3',
 		},
@@ -102,11 +93,8 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 			name: 'L5',
 		},
 		{
-			name: 'L1',
+			name: 'H4',
 		},
-		// {
-		// 	name: 'H4',
-		// },
 		// Padding bottom
 		{
 			name: 'H4',
@@ -117,7 +105,7 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 		{
 			name: 'H3',
 		},
-		// Visible rows (5)
+		// Visible rows (4)
 		{
 			name: 'L3',
 		},
@@ -128,11 +116,8 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 			name: 'H1',
 		},
 		{
-			name: 'H1',
+			name: 'L4',
 		},
-		// {
-		// 	name: 'L4',
-		// },
 		// Padding bottom
 		{
 			name: 'H3',
@@ -232,17 +217,17 @@ const l5Static = {
 const sStatic = { type: 'sprite', assetKey: 's.png', sizeRatios: { width: 1.243, height: 1.243 } };
 const wStatic = { type: 'sprite', assetKey: 'w.png', sizeRatios: { width: 1.12, height: 1.12 } };
 
-const wSizeRatios = { width: 1.5 * 0.9, height: SPECIAL_SYMBOL_SIZE * 1.15 };
-const sSizeRatios = { width: 2.5, height: SPECIAL_SYMBOL_SIZE * 2.3 };
+const wSizeRatios = { width: 0.2, height: SPECIAL_SYMBOL_SIZE * 0.15 };
+// Calculated to match original static sprite size: (484×427 @ 1.243) / (80×70 @ scale:2)
+const sSizeRatios = { width: 0.38, height: 0.38 };
 
 export const SYMBOL_INFO_MAP = {
 	H1: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'H1',
-			animationName: 'h1',
-			sizeRatios: { width: 0.5, height: HIGH_SYMBOL_SIZE * 0.57 },
+			type: 'spriteSheet',
+			assetKey: 'H1_ANIMATION',
+			sizeRatios: { width: 1.2, height: 1.2 },
 		},
 		postWinStatic: h1Static,
 		static: h1Static,
@@ -252,10 +237,9 @@ export const SYMBOL_INFO_MAP = {
 	H2: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'H2',
-			animationName: 'h2',
-			sizeRatios: { width: 0.5, height: HIGH_SYMBOL_SIZE * 0.57 },
+			type: 'spriteSheet',
+			assetKey: 'H2_ANIMATION',
+			sizeRatios: { width: 1.2, height: 1.2 },
 		},
 		postWinStatic: h2Static,
 		static: h2Static,
@@ -265,10 +249,9 @@ export const SYMBOL_INFO_MAP = {
 	H3: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'H3',
-			animationName: 'h3',
-			sizeRatios: { width: 0.5 * 0.9, height: HIGH_SYMBOL_SIZE * 0.53 },
+			type: 'spriteSheet',
+			assetKey: 'H3_ANIMATION',
+			sizeRatios: { width: 1.2, height: 1.2 },
 		},
 		postWinStatic: h3Static,
 		static: h3Static,
@@ -278,10 +261,9 @@ export const SYMBOL_INFO_MAP = {
 	H4: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'H4',
-			animationName: 'h4',
-			sizeRatios: { width: 0.5 * 0.9, height: HIGH_SYMBOL_SIZE * 0.53 },
+			type: 'spriteSheet',
+			assetKey: 'H4_ANIMATION',
+			sizeRatios: { width: 1.2, height: 1.2 },
 		},
 		postWinStatic: h4Static,
 		static: h4Static,
@@ -291,10 +273,9 @@ export const SYMBOL_INFO_MAP = {
 	H5: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'H5',
-			animationName: 'h5',
-			sizeRatios: { width: 0.5 * 0.9, height: HIGH_SYMBOL_SIZE * 0.53 },
+			type: 'spriteSheet',
+			assetKey: 'H5_ANIMATION',
+			sizeRatios: { width: 1.2, height: 1.2 },
 		},
 		postWinStatic: h5Static,
 		static: h5Static,
@@ -304,10 +285,9 @@ export const SYMBOL_INFO_MAP = {
 	L1: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'L1',
-			animationName: 'l1',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.65 },
+			type: 'spriteSheet',
+			assetKey: 'L1_ANIMATION',
+			sizeRatios: { width: 1.1, height: 1.1 },
 		},
 		postWinStatic: l1Static,
 		static: l1Static,
@@ -317,10 +297,9 @@ export const SYMBOL_INFO_MAP = {
 	L2: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'L2',
-			animationName: 'l2',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.65 },
+			type: 'spriteSheet',
+			assetKey: 'L2_ANIMATION',
+			sizeRatios: { width: 1.1, height: 1.1 },
 		},
 		postWinStatic: l2Static,
 		static: l2Static,
@@ -330,10 +309,9 @@ export const SYMBOL_INFO_MAP = {
 	L3: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'L3',
-			animationName: 'l3',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.63 },
+			type: 'spriteSheet',
+			assetKey: 'L3_ANIMATION',
+			sizeRatios: { width: 1.1, height: 1.1 },
 		},
 		postWinStatic: l3Static,
 		static: l3Static,
@@ -343,10 +321,9 @@ export const SYMBOL_INFO_MAP = {
 	L4: {
 		explosion,
 		win: {
-			type: 'spine',
-			assetKey: 'L4',
-			animationName: 'l4',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.63 },
+			type: 'spriteSheet',
+			assetKey: 'L4_ANIMATION',
+			sizeRatios: { width: 1.1, height: 1.1 },
 		},
 		postWinStatic: l4Static,
 		static: l4Static,
@@ -374,31 +351,23 @@ export const SYMBOL_INFO_MAP = {
 		},
 		static: wStatic,
 		spin: wStatic,
-		win: { type: 'spine', assetKey: 'W', animationName: 'wild_dynamite', sizeRatios: wSizeRatios },
+		win: { type: 'spriteSheet', assetKey: 'W_ANIMATION', sizeRatios: { width: 1.3, height: 1.3 } },
 		land: {
-			type: 'spine',
-			assetKey: 'W',
-			animationName: 'wild_dynamite_land',
-			sizeRatios: wSizeRatios,
+			type: 'spriteSheet',
+			assetKey: 'W_ANIMATION',
+			sizeRatios: { width: 1.3, height: 1.3 },
 		},
 	},
 	S: {
 		explosion,
 		postWinStatic: sStatic,
 		static: sStatic,
-		spin: {
-			type: 'spine',
-			assetKey: 'S',
-			animationName: 'scatter_spin',
-			sizeRatios: sSizeRatios,
-		},
-		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', sizeRatios: sSizeRatios },
-		land: {
-			type: 'spine',
-			assetKey: 'S',
-			animationName: 'scatter_land',
-			sizeRatios: sSizeRatios,
-		},
+		spin: sStatic,
+		win: {
+			type: 'spriteSheet',
+			assetKey: 'S_ANIMATION',
+			sizeRatios: { width: 1.4, height: 1.4 } },
+		land: sStatic,
 	},
 } as const;
 

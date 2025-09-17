@@ -38,6 +38,7 @@
 		{ name: 'H3' },
 		{ name: 'H2' },
 		{ name: 'H4' },
+		{ name: 'H5' },
 	] as const;
 </script>
 

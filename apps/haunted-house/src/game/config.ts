@@ -158,6 +158,19 @@ export default {
 				},
 			],
 		},
+		H5: {
+			paytable: [
+				{
+					'5': 25,
+				},
+				{
+					'4': 12,
+				},
+				{
+					'3': 6,
+				},
+			],
+		},
 	},
 	paddingReels: {
 		basegame: [
@@ -166,7 +179,7 @@ export default {
 					name: 'L1',
 				},
 				{
-					name: 'H1',
+					name: 'H5',
 				},
 				{
 					name: 'H3',

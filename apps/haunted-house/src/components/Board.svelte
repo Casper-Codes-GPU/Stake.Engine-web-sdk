@@ -30,15 +30,25 @@
 		boardShow: () => (show = true),
 		boardHide: () => (show = false),
 		boardWithAnimateSymbols: async ({ symbolPositions }) => {
+			console.log('🎲 Starting win animations for positions:', symbolPositions);
+
 			const getPromises = () =>
 				symbolPositions.map(async (position) => {
 					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+					console.log('🎯 Animating symbol at reel', position.reel, 'row', position.row, ':', reelSymbol.rawSymbol.name);
+
 					reelSymbol.symbolState = 'win';
-					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
+					await waitForResolve((resolve) => {
+						reelSymbol.oncomplete = () => {
+							console.log('✅ Win animation completed for', reelSymbol.rawSymbol.name, 'at reel', position.reel, 'row', position.row);
+							resolve();
+						};
+					});
 					reelSymbol.symbolState = 'postWinStatic';
 				});
 
 			await Promise.all(getPromises());
+			console.log('🏁 All win animations completed, game should continue');
 		},
 	});
 

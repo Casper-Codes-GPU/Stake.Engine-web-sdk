@@ -1,0 +1,13 @@
+
+demonio.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+03-demonio
+  rotate: false
+  xy: 1, 1
+  size: 435, 512
+  orig: 512, 512
+  offset: 39, 0
+  index: -1

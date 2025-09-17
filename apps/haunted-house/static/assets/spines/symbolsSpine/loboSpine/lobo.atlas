@@ -1,0 +1,13 @@
+
+lobo.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+05-lobo
+  rotate: false
+  xy: 1, 1
+  size: 503, 512
+  orig: 512, 512
+  offset: 5, 0
+  index: -1

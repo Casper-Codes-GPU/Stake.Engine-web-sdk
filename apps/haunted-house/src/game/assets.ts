@@ -16,32 +16,32 @@ export default {
 	H1: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h1.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/calabazaSpine/calabaza.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/calabazaSpine/calabaza.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	H2: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h2.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/loboSpine/lobo.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/loboSpine/lobo.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	H3: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h3.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/demonioSpine/demonio.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/demonioSpine/demonio.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	H4: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/vampiro/vampiro.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/vampiro/vampiro.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/vampiroSpine/vampiro.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/vampiroSpine/vampiro.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
@@ -56,32 +56,32 @@ export default {
 	L1: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l1.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/calaveraSpine/calaveraSpine.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/calaveraSpine/calaveraSpine.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	L2: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l2.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/eddieCalavera/eddie.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/eddieCalavera/eddie.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	L3: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l3.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/payasoSpine/payaso-spine.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/payasoSpine/payaso-spine.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	L4: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l4.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/mujerSpine/mujer.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/mujerSpine/mujer.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
@@ -96,8 +96,8 @@ export default {
 	S: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols2/symbols2.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols2/S.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/cuchiSpine/cuchi.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/cuchiSpine/cuchi.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
@@ -112,8 +112,8 @@ export default {
 	W: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols3/symbols3.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols3/W.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbolsSpine/wildSpine/wild.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/wildSpine/wild.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
@@ -277,6 +277,11 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/logo/Logo2.png', import.meta.url).href,
 	},
+	hauntedHouseLogoLoader: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/logo/HauntedHouseLogo.png', import.meta.url).href,
+		preload: true,
+	},
 	hauntedHouseBackground: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/background/haunted-house-bg.png', import.meta.url).href,
@@ -288,7 +293,128 @@ export default {
 		preload: true,
 	},
 	spritePrueba: {
-		type: 'sprites',
+		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/spritePrueba/spritesheet.json', import.meta.url).href,
+	},
+	cofresSimple: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/cofresydiamantes/cofre_madera.json', import.meta.url).href,
+	},
+	payasoSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/payasoSpine/payaso-spine.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/payasoSpine/payaso-spine.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	calaveraSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/calaveraSpine/calaveraSpine.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/calaveraSpine/calaveraSpine.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	eddieSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/eddieCalavera/eddie.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/eddieCalavera/eddie.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	mujerSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/mujerSpine/mujer.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/mujerSpine/mujer.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	calabazaSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/calabazaSpine/calabaza.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/calabazaSpine/calabaza.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	demonioSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/demonioSpine/demonio.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/demonioSpine/demonio.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	loboSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/loboSpine/lobo.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/loboSpine/lobo.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	vampiroSpine: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/vampiroSpine/vampiro.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/vampiroSpine/vampiro.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
+	cuchiSpine:{
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsSpine/cuchiSpine/cuchi.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsSpine/cuchiSpine/cuchi.json', import.meta.url).href,
+			scale: 2,
+		}
+	},
+	// Symbol Sprite Animations (New System)
+	H1_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/h1-calabaza/spritesheet.json', import.meta.url).href,
+	},
+	H2_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/h2-lobo/spritesheet.json', import.meta.url).href,
+	},
+	H3_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/h3-demonio/spritesheet.json', import.meta.url).href,
+	},
+	H4_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/h4-vampiro/spritesheet.json', import.meta.url).href,
+	},
+	H5_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/h5-momia/spritesheet.json', import.meta.url).href,
+	},
+	L1_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/l1-calavera/spritesheet.json', import.meta.url).href,
+	},
+	L2_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/l2-eddie/spritesheet.json', import.meta.url).href,
+	},
+	L3_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/l3-payaso/spritesheet.json', import.meta.url).href,
+	},
+	L4_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/l4-mujer/spritesheet.json', import.meta.url).href,
+	},
+	S_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/s-scatter/spritesheet.json', import.meta.url).href,
+	},
+	W_ANIMATION: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/symbolAnimations/w-wild/spritesheet.json', import.meta.url).href,
 	},
 } as const;

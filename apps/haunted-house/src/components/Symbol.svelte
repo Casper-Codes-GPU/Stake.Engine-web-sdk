@@ -18,11 +18,18 @@
 	const props: Props = $props();
 	const context = getContext();
 	const symbolInfo = $derived(getSymbolInfo({ rawSymbol: props.rawSymbol, state: props.state }));
-	const isSprite = $derived(symbolInfo.type === 'sprite');
+	const isSprite = $derived(symbolInfo.type === 'sprite' || symbolInfo.type === 'spriteSheet');
 </script>
 
 {#if isSprite}
-	<SymbolSprite {symbolInfo} x={props.x} y={props.y} oncomplete={props.oncomplete} />
+	<SymbolSprite
+		{symbolInfo}
+		x={props.x}
+		y={props.y}
+		oncomplete={props.oncomplete}
+		loop={props.loop}
+		showWinFrame={props.state === 'win' && !['S', 'M'].includes(props.rawSymbol.name)}
+	/>
 {:else}
 	<SymbolSpine
 		loop={props.loop}

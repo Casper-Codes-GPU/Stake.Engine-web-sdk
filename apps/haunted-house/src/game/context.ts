@@ -12,10 +12,31 @@ import { stateGame, stateGameDerived } from './stateGame.svelte';
 import { i18nDerived } from '../i18n/i18nDerived';
 
 export const setContext = () => {
-	setContextEventEmitter<EmitterEvent>({ eventEmitter });
-	setContextXstate({ stateXstate, stateXstateDerived });
-	setContextLayout({ stateLayout, stateLayoutDerived });
-	setContextApp({ stateApp });
+	try {
+		console.log('🔧 setContext: Starting context setup...');
+
+		console.log('🔧 setContext: Setting EventEmitter context...');
+		setContextEventEmitter<EmitterEvent>({ eventEmitter });
+		console.log('✅ EventEmitter context set');
+
+		console.log('🔧 setContext: Setting XState context...');
+		setContextXstate({ stateXstate, stateXstateDerived });
+		console.log('✅ XState context set');
+
+		console.log('🔧 setContext: Setting Layout context...');
+		setContextLayout({ stateLayout, stateLayoutDerived });
+		console.log('✅ Layout context set');
+
+		console.log('🔧 setContext: Setting App context...');
+		setContextApp({ stateApp });
+		console.log('✅ App context set');
+
+		console.log('✅ setContext: All contexts set successfully');
+	} catch (error) {
+		console.error('❌ setContext: Failed to set context:', error);
+		console.error('setContext error stack:', error?.stack);
+		throw error;
+	}
 };
 
 export const getContext = () => ({

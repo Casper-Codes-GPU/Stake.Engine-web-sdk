@@ -1,0 +1,47 @@
+{
+  "skeleton": {
+    "hash": "converted-from-dragonbones",
+    "spine": "4.1.00",
+    "x": -64,
+    "y": -64,
+    "width": 128,
+    "height": 128,
+    "fps": 24
+  },
+  "bones": [
+    { "name": "root" }
+  ],
+  "slots": [
+    { "name": "00-payaso", "bone": "root", "attachment": "00-payaso" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "00-payaso": {
+          "00-payaso": {
+            "name": "00-payaso",
+            "width": 115,
+            "height": 126,
+            "x": -1,
+            "rotation": -7.27,
+            "scaleX": 1.0725
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "payaso-wobble": {
+      "bones": {
+        "root": {
+          "rotate": [
+            { "time": 0, "value": 20 },
+            { "time": 0.25, "value": -20.01 },
+            { "time": 0.5, "value": 20 }
+          ]
+        }
+      }
+    }
+  }
+}

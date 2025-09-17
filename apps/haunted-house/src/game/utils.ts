@@ -13,9 +13,41 @@ import type { RawSymbol, SymbolState } from './types';
 export const { getEmptyBoard } = createGetEmptyPaddedBoard({ reelsDimensions: BOARD_DIMENSIONS });
 export const { playBookEvent, playBookEvents } = createPlayBookUtils({ bookEventHandlerMap });
 export const playBet = async (bet: Bet) => {
-	stateBet.winBookEventAmount = 0;
-	await playBookEvents(bet.state);
-	eventEmitter.broadcast({ type: 'stopButtonEnable' });
+	try {
+		console.log('🎮 playBet: Starting bet execution...');
+		console.log('🎮 playBet: Bet object:', bet ? Object.keys(bet) : 'no bet');
+		console.log('🎮 playBet: Bet state length:', bet?.state?.length || 0);
+		console.log('🎮 playBet: Bet ID:', bet?.id);
+		console.log('🎮 playBet: Bet payoutMultiplier:', bet?.payoutMultiplier);
+
+		console.log('🎮 playBet: Resetting stateBet.winBookEventAmount to 0...');
+		stateBet.winBookEventAmount = 0;
+		console.log('✅ stateBet reset');
+
+		console.log('🎮 playBet: Starting playBookEvents...');
+		console.log('🎮 playBet: Events to play:', bet.state?.map(e => `${e.index}:${e.type}`) || []);
+
+		await playBookEvents(bet.state);
+		console.log('✅ playBookEvents completed');
+
+		console.log('🎮 playBet: Broadcasting stopButtonEnable...');
+		eventEmitter.broadcast({ type: 'stopButtonEnable' });
+		console.log('✅ stopButtonEnable broadcasted');
+
+		console.log('✅ playBet: Bet execution completed successfully');
+	} catch (error) {
+		console.error('❌ playBet: Failed to execute bet:', error);
+		console.error('playBet error message:', error?.message);
+		console.error('playBet error stack:', error?.stack);
+		console.error('playBet error name:', error?.name);
+
+		// Additional context
+		console.error('playBet context - bet:', bet);
+		console.error('playBet context - stateBet:', stateBet);
+		console.error('playBet context - eventEmitter:', eventEmitter);
+
+		throw error;
+	}
 };
 
 // resume bet
@@ -59,5 +91,19 @@ export const getSymbolInfo = ({
 	rawSymbol: RawSymbol;
 	state: SymbolState;
 }) => {
-	return SYMBOL_INFO_MAP[rawSymbol.name][state];
+	const symbolInfo = SYMBOL_INFO_MAP[rawSymbol.name][state];
+
+	// Debug logging for win animations
+	if (state === 'win') {
+		console.log(`🎯 getSymbolInfo WIN: ${rawSymbol.name}`, {
+			state,
+			type: symbolInfo?.type,
+			assetKey: symbolInfo?.assetKey,
+			sizeRatios: symbolInfo?.sizeRatios,
+			symbolExists: rawSymbol.name in SYMBOL_INFO_MAP,
+			stateExists: state in (SYMBOL_INFO_MAP[rawSymbol.name] || {})
+		});
+	}
+
+	return symbolInfo;
 };

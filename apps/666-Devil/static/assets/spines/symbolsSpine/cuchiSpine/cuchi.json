@@ -1,0 +1,49 @@
+{
+  "skeleton": {
+    "hash": "cuchi-v1.0",
+    "spine": "4.1.00",
+    "x": -64,
+    "y": -64,
+    "width": 128,
+    "height": 128,
+    "fps": 24
+  },
+  "bones": [
+    { "name": "root" }
+  ],
+  "slots": [
+    { "name": "09-Cuchi", "bone": "root", "attachment": "09-Cuchi" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "09-Cuchi": {
+          "09-Cuchi": {
+            "name": "09-Cuchi",
+            "width": 80,
+            "height": 70,
+            "x": 0,
+            "rotation": 0,
+            "scaleX": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "animtion0": {
+      "bones": {
+        "root": {
+          "rotate": [
+            { "time": 0, "value": 0 },
+            { "time": 0.0833, "value": 90 },
+            { "time": 0.1666, "value": -180 },
+            { "time": 0.2499, "value": -90 },
+            { "time": 0.3332, "value": 0 }
+          ]
+        }
+      }
+    }
+  }
+}

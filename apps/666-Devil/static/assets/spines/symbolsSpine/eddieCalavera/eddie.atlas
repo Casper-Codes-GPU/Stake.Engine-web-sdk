@@ -1,0 +1,13 @@
+
+eddie.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+08-Eddie
+  rotate: false
+  xy: 1, 1
+  size: 381, 506
+  orig: 512, 512
+  offset: 65, 6
+  index: -1

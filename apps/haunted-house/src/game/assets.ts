@@ -292,14 +292,14 @@ export default {
 		src: new URL('../../assets/sprites/cofresydiamantes/PRUEBA2-0.png', import.meta.url).href,
 		preload: true,
 	},
-	spritePrueba: {
-		type: 'spriteSheet',
-		src: new URL('../../assets/sprites/spritePrueba/spritesheet.json', import.meta.url).href,
-	},
-	cofresSimple: {
-		type: 'spriteSheet',
-		src: new URL('../../assets/sprites/cofresydiamantes/cofre_madera.json', import.meta.url).href,
-	},
+	// spritePrueba: {
+	// 	type: 'spriteSheet',
+	// 	src: new URL('../../assets/sprites/spritePrueba/spritesheet.json', import.meta.url).href,
+	// },
+	// cofresSimple: {
+	// 	type: 'spriteSheet',
+	// 	src: new URL('../../assets/sprites/cofresydiamantes/cofre_madera.json', import.meta.url).href,
+	// },
 	payasoSpine: {
 		type: 'spine',
 		src: {
@@ -372,6 +372,11 @@ export default {
 			scale: 2,
 		}
 	},
+	// DEMOGOGO Character Animation (45 frames)
+	DEMOGOGO_CHARACTER: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/character/spritesheet.json', import.meta.url).href,
+	},
 	// Symbol Sprite Animations (New System)
 	H1_ANIMATION: {
 		type: 'spriteSheet',
@@ -416,5 +421,30 @@ export default {
 	W_ANIMATION: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/symbolAnimations/w-wild/spritesheet.json', import.meta.url).href,
+	},
+	// Custom UI Assets for Haunted House Theme
+	UI_SPIN_CIRCLE: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/circuloSpin.png', import.meta.url).href,
+	},
+	UI_SPIN_ICON: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/spin.png', import.meta.url).href,
+	},
+	UI_BET_SQUARE_PLUS: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/cuadrado menos.png', import.meta.url).href,
+	},
+	UI_BET_SQUARE_MINUS: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/cuadrado mas.png', import.meta.url).href,
+	},
+	UI_PLUS_ICON: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/mas.png', import.meta.url).href,
+	},
+	UI_MINUS_ICON: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/menos.png', import.meta.url).href,
 	},
 } as const;

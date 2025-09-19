@@ -1,0 +1,71 @@
+<script lang="ts" module>
+	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { StoryPixiApp } from 'components-storybook';
+
+	const { Story } = defineMeta({
+		tags: ['autodocs'],
+		title: 'UI/Haunted House Buttons',
+	});
+</script>
+
+<script lang="ts">
+	import assets from '../game/assets';
+	import HauntedButtonSpin from '../components/ui/HauntedButtonSpin.svelte';
+	import HauntedButtonIncrease from '../components/ui/HauntedButtonIncrease.svelte';
+	import HauntedButtonDecrease from '../components/ui/HauntedButtonDecrease.svelte';
+	import HauntedButtonAutoSpin from '../components/ui/HauntedButtonAutoSpin.svelte';
+</script>
+
+<Story name="Haunted House Custom Buttons">
+	{#snippet template()}
+		<StoryPixiApp {assets}>
+			<div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 15px; z-index: 1000; border-radius: 5px;">
+				<h3 style="margin: 0 0 10px 0;">🎮 Botones Personalizados</h3>
+				<p style="margin: 0;">Botones con assets personalizados para el juego haunted house</p>
+			</div>
+
+			<!-- Custom Spin Button -->
+			<HauntedButtonSpin x={200} y={300} />
+
+			<!-- Increase Button -->
+			<HauntedButtonIncrease x={350} y={300} />
+
+			<!-- Decrease Button -->
+			<HauntedButtonDecrease x={450} y={300} />
+
+			<!-- Auto Spin Button -->
+			<HauntedButtonAutoSpin x={550} y={300} />
+
+			<!-- Labels -->
+			<div style="position: absolute; bottom: 150px; left: 170px; color: white; text-align: center; font-size: 14px;">SPIN<br/>Botón Principal</div>
+			<div style="position: absolute; bottom: 150px; left: 320px; color: white; text-align: center; font-size: 14px;">SUBIR<br/>Incrementar</div>
+			<div style="position: absolute; bottom: 150px; left: 420px; color: white; text-align: center; font-size: 14px;">BAJAR<br/>Decrementar</div>
+			<div style="position: absolute; bottom: 150px; left: 520px; color: white; text-align: center; font-size: 14px;">AUTO<br/>Auto Spin</div>
+		</StoryPixiApp>
+	{/snippet}
+</Story>
+
+<Story name="Button Comparison">
+	{#snippet template()}
+		<StoryPixiApp {assets}>
+			<div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 15px; z-index: 1000; border-radius: 5px;">
+				<h3 style="margin: 0 0 10px 0;">📊 Comparación de Botones</h3>
+				<p style="margin: 0;">Assets personalizados vs botones estándar</p>
+			</div>
+
+			<!-- Custom buttons row -->
+			<HauntedButtonSpin x={200} y={200} />
+			<HauntedButtonIncrease x={320} y={200} />
+			<HauntedButtonDecrease x={420} y={200} />
+			<HauntedButtonAutoSpin x={520} y={200} />
+
+			<!-- Labels -->
+			<div style="position: absolute; bottom: 250px; left: 50px; color: white; text-align: center; font-size: 16px; font-weight: bold;">Botones Personalizados:</div>
+			<div style="position: absolute; bottom: 150px; left: 300px; color: white; text-align: center; font-size: 14px;">
+				✅ Assets temáticos de haunted house<br/>
+				✅ Diseño inspirado en slots profesionales<br/>
+				✅ Funcionalidad completa mantenida
+			</div>
+		</StoryPixiApp>
+	{/snippet}
+</Story>

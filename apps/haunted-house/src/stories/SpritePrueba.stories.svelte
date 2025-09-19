@@ -182,17 +182,29 @@
 				<h3 style="margin: 0 0 10px 0;">✅ SpriteSheet Component</h3>
 				<p style="margin: 0;">This should work! Using asset key directly.</p>
 			</div>
-			
+
 			<!-- THE CORRECT WAY: Using SpriteSheet component with asset key -->
-			<SpriteSheet 
+			<SpriteSheet
 				key="spritePrueba"
-				x={400} 
-				y={300} 
-				scale={2} 
+				x={200}
+				y={300}
+				scale={2}
 				anchor={{ x: 0.5, y: 0.5 }}
-				play={true} 
-				loop={true} 
-				animationSpeed={0.15} 
+				play={true}
+				loop={true}
+				animationSpeed={0.15}
+			/>
+
+			<!-- TEST DEMOGOGO CHARACTER -->
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={600}
+				y={300}
+				scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true}
+				loop={true}
+				animationSpeed={0.08}
 			/>
 		</StoryPixiApp>
 	{/snippet}

@@ -287,19 +287,7 @@ export default {
 		src: new URL('../../assets/sprites/background/haunted-house-bg.png', import.meta.url).href,
 		preload: true,
 	},
-	cofre: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/cofresydiamantes/PRUEBA2-0.png', import.meta.url).href,
-		preload: true,
-	},
-	// spritePrueba: {
-	// 	type: 'spriteSheet',
-	// 	src: new URL('../../assets/sprites/spritePrueba/spritesheet.json', import.meta.url).href,
-	// },
-	// cofresSimple: {
-	// 	type: 'spriteSheet',
-	// 	src: new URL('../../assets/sprites/cofresydiamantes/cofre_madera.json', import.meta.url).href,
-	// },
+	// Assets de prueba eliminados para evitar errores 404
 	payasoSpine: {
 		type: 'spine',
 		src: {
@@ -422,7 +410,12 @@ export default {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/symbolAnimations/w-wild/spritesheet.json', import.meta.url).href,
 	},
-	// Custom UI Assets for Haunted House Theme
+	// Custom UI Assets for Haunted House Theme - Integrated Design
+	UI_INTEGRATED_CONTROLS: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/image.png', import.meta.url).href,
+	},
+	// Keep legacy assets for fallback if needed
 	UI_SPIN_CIRCLE: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/ui/circuloSpin.png', import.meta.url).href,
@@ -433,11 +426,11 @@ export default {
 	},
 	UI_BET_SQUARE_PLUS: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/ui/cuadrado menos.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/ui/cuadrado mas.png', import.meta.url).href,
 	},
 	UI_BET_SQUARE_MINUS: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/ui/cuadrado mas.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/ui/cuadrado menos.png', import.meta.url).href,
 	},
 	UI_PLUS_ICON: {
 		type: 'sprite',

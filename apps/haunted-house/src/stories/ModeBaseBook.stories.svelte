@@ -20,13 +20,21 @@
 	import { playBet } from '../game/utils';
 	import books from './data/base_books';
 
-	// Simple initialization logging
-	console.log('MODE_BASE story initializing...');
-	console.log('Books available:', books?.length || 0);
-
-	// Set context
 	setContext();
 </script>
+
+{#snippet template(args: TemplateArgs<any>)}
+	<StoryGameTemplate
+		skipLoadingScreen={args.skipLoadingScreen}
+		action={async () => {
+			await args.action?.(args.data);
+		}}
+	>
+		<StoryLocale lang="en">
+			<Game />
+		</StoryLocale>
+	</StoryGameTemplate>
+{/snippet}
 
 <Story
 	name="random"
@@ -34,28 +42,11 @@
 		skipLoadingScreen: true,
 		data: {},
 		action: async () => {
-			console.log('🎮 Starting MODE_BASE random book...');
-
 			const index = randomInteger({ min: 0, max: books.length - 1 });
 			const data = books[index];
-
-			console.log('📖 Playing book', index, 'with', data.events?.length, 'events');
-			console.log('📖 Events:', data.events?.map(e => e.type));
-
+			console.log('Running a book at index', index);
 			await playBet({ ...data, state: data.events });
-
-			console.log('✅ Book completed successfully');
 		},
 	})}
->
-	{#snippet template(args)}
-		<StoryGameTemplate
-			skipLoadingScreen={args.skipLoadingScreen}
-			action={args.action}
-		>
-			<StoryLocale lang="en">
-				<Game />
-			</StoryLocale>
-		</StoryGameTemplate>
-	{/snippet}
-</Story>
+	{template}
+/>

@@ -1,0 +1,178 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	import { EnablePixiExtension } from 'components-pixi';
+	import { EnableHotkey } from 'components-shared';
+	import { MainContainer } from 'components-layout';
+	import { App, Text, REM, Container } from 'pixi-svelte';
+	import { stateModal } from 'state-shared';
+
+	import { UiGameName } from 'components-ui-pixi';
+	import { GameVersion, Modals } from 'components-ui-html';
+	import HauntedHouseUI from './ui/HauntedHouseUI.svelte';
+
+	import { getContext } from '../game/context';
+	import EnableSound from './EnableSound.svelte';
+	import EnableGameActor from './EnableGameActor.svelte';
+	import ResumeBet from './ResumeBet.svelte';
+	import Sound from './Sound.svelte';
+	import Background from './Background.svelte';
+	import LoadingScreen from './LoadingScreen.svelte';
+	import BoardFrame from './BoardFrame.svelte';
+	import Board from './Board.svelte';
+	import Anticipations from './Anticipations.svelte';
+	import Win from './Win.svelte';
+	import FreeSpinIntro from './FreeSpinIntro.svelte';
+	import FreeSpinCounter from './FreeSpinCounter.svelte';
+	import FreeSpinOutro from './FreeSpinOutro.svelte';
+	import Transition from './Transition.svelte';
+	import I18nTest from './I18nTest.svelte';
+import HauntedHouseLogo from './HauntedHouseLogo.svelte';
+import HauntedHouseUIControl from './ui/HauntedHouseUIControl.svelte';
+import { stateBet, stateBetDerived, stateConfig } from 'state-shared';
+
+	const context = getContext();
+
+	onMount(() => (context.stateLayout.showLoadingScreen = true));
+
+	context.eventEmitter.subscribeOnMount({
+		buyBonusConfirm: () => {
+			stateModal.modal = { name: 'buyBonusConfirm' };
+		},
+	});
+
+	// Funciones para el componente UI customizado (replicando funcionalidad original)
+	function handleCustomSpin() {
+		// Sonido del botón de spin
+		context.eventEmitter.broadcast({ type: 'soundPressBet' });
+
+		// Lógica de spin igual que ButtonBetProvider
+		if (context.stateXstateDerived.isIdle()) {
+			context.eventEmitter.broadcast({ type: 'bet' });
+		} else {
+			// Si está en spin, actuar como stop
+			if (stateBetDerived.hasAutoBetCounter()) stateBet.autoSpinsCounter = 0;
+			context.eventEmitter.broadcast({ type: 'stopButtonClick' });
+		}
+	}
+
+	function handleCustomIncreaseBet() {
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+
+		const biggest = stateConfig.betAmountOptions[stateConfig.betAmountOptions.length - 1];
+		const nextBigger = [...stateConfig.betAmountOptions]
+			.sort((a, b) => a - b)
+			.find((option) => option > stateBet.betAmount);
+
+		const newAmount = nextBigger || biggest;
+
+		stateBetDerived.setBetAmount(newAmount);
+	}
+
+	function handleCustomDecreaseBet() {
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+
+		const smallest = stateConfig.betAmountOptions[0];
+		const nextSmaller = [...stateConfig.betAmountOptions]
+			.sort((a, b) => b - a)
+			.find((option) => option < stateBet.betAmount);
+
+		const newAmount = nextSmaller || smallest;
+
+		stateBetDerived.setBetAmount(newAmount);
+	}
+
+	// Estados derivados para deshabilitar botones cuando sea necesario
+	$: customIncreaseDisabled = !context.stateXstateDerived.isIdle() ||
+		stateBet.betAmount === stateConfig.betAmountOptions[stateConfig.betAmountOptions.length - 1];
+	$: customDecreaseDisabled = !context.stateXstateDerived.isIdle() ||
+		stateBet.betAmount === stateConfig.betAmountOptions[0];
+
+	// Posición fija en esquina inferior derecha (como funcionaba antes)
+	$: rightCornerX = context.stateLayoutDerived.canvasSizes().width - 200;
+	$: rightCornerY = context.stateLayoutDerived.canvasSizes().height - 150;
+</script>
+
+<App>
+	<EnableSound />
+	<EnableHotkey />
+	<EnableGameActor />
+	<EnablePixiExtension />
+
+	<Background />
+
+	{#if context.stateLayout.showLoadingScreen}
+		<LoadingScreen onloaded={() => (context.stateLayout.showLoadingScreen = false)} />
+	{:else}
+		<ResumeBet />
+		<!--
+			The reason why <Sound /> is rendered after clicking the loading screen:
+			"Autoplay with sound is allowed if: The user has interacted with the domain (click, tap, etc.)."
+			Ref: https://developer.chrome.com/blog/autoplay
+		-->
+		<Sound />
+
+		<MainContainer>
+			<BoardFrame />
+		</MainContainer>
+
+		<MainContainer>
+			<HauntedHouseLogo />
+			<Board />
+			<Anticipations />
+		</MainContainer>
+
+		<HauntedHouseUI>
+			{#snippet gameName()}
+				<UiGameName name="HAUNTED HOUSE" />
+			{/snippet}
+			{#snippet logo()}
+				<Text
+					anchor={{ x: 1, y: 0 }}
+					text="ADD YOUR LOGO"
+					style={{
+						fontFamily: 'proxima-nova',
+						fontSize: REM * 1.5,
+						fontWeight: '600',
+						lineHeight: REM * 2,
+						fill: 0xffffff,
+					}}
+				/>
+			{/snippet}
+		</HauntedHouseUI>
+
+
+		<!-- Custom Haunted House UI Control - adjusted positioning -->
+		<Container
+			x={1050}
+			y={595}
+		>
+			<HauntedHouseUIControl
+				x={0}
+				y={0}
+				scale={0.3}
+				disabled={!context.stateXstateDerived.isIdle()}
+				increaseDisabled={customIncreaseDisabled}
+				decreaseDisabled={customDecreaseDisabled}
+				onspin={handleCustomSpin}
+				onincreaseBet={handleCustomIncreaseBet}
+				ondecreaseBet={handleCustomDecreaseBet}
+			/>
+		</Container>
+		<Win />
+		<FreeSpinIntro />
+		{#if ['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType())}
+			<FreeSpinCounter />
+		{/if}
+		<FreeSpinOutro />
+		<Transition />
+
+		<I18nTest />
+	{/if}
+</App>
+
+<Modals>
+	{#snippet version()}
+		<GameVersion version="0.0.0" />
+	{/snippet}
+</Modals>

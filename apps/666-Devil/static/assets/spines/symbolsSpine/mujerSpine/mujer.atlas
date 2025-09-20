@@ -1,0 +1,13 @@
+
+mujer.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+02-mujer
+  rotate: false
+  xy: 1, 1
+  size: 407, 505
+  orig: 512, 512
+  offset: 53, 0
+  index: -1

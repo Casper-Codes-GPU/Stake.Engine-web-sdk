@@ -1,0 +1,47 @@
+{
+  "skeleton": {
+    "hash": "vampiro-v2.0",
+    "spine": "4.1.00",
+    "x": -64,
+    "y": -64,
+    "width": 128,
+    "height": 128,
+    "fps": 24
+  },
+  "bones": [
+    { "name": "root" }
+  ],
+  "slots": [
+    { "name": "01-vampiro", "bone": "root", "attachment": "01-vampiro" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "01-vampiro": {
+          "01-vampiro": {
+            "name": "01-vampiro",
+            "width": 125,
+            "height": 140,
+            "x": 0,
+            "rotation": 0,
+            "scaleX": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "animtion0": {
+      "bones": {
+        "root": {
+          "rotate": [
+            { "time": 0, "value": 20 },
+            { "time": 0.25, "value": -20.01 },
+            { "time": 0.5, "value": 20 }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,159 @@
+<script lang="ts" module>
+	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { SpriteSheet } from 'pixi-svelte';
+	import { StoryPixiApp } from 'components-storybook';
+
+	const { Story } = defineMeta({
+		tags: ['autodocs'],
+		title: 'Characters/DEMOGOGO Monster',
+		component: SpriteSheet,
+		args: {
+			x: 400,
+			y: 300,
+			scale: 0.4,
+			anchor: { x: 0.5, y: 0.5 },
+			play: true,
+			loop: true,
+			animationSpeed: 0.1,
+		},
+		argTypes: {
+			animationSpeed: {
+				control: { type: 'range', min: 0.01, max: 2.0, step: 0.01 }
+			},
+			scale: {
+				control: { type: 'range', min: 0.1, max: 1, step: 0.1 }
+			},
+			play: {
+				control: { type: 'boolean' }
+			},
+			loop: {
+				control: { type: 'boolean' }
+			}
+		}
+	});
+</script>
+
+<script lang="ts">
+	import assets from '../game/assets';
+
+	// Debug info
+	console.log('=== DEMOGOGO CHARACTER ===');
+	console.log('DEMOGOGO_CHARACTER in assets:', 'DEMOGOGO_CHARACTER' in assets);
+	console.log('Asset config:', assets.DEMOGOGO_CHARACTER);
+	console.log('All assets:', Object.keys(assets));
+</script>
+
+<Story name="DEMOGOGO Monster Animation">
+	{#snippet template(args)}
+		<StoryPixiApp {assets}>
+			<div style="position: absolute; top: 10px; left: 10px; background: rgba(139, 0, 0, 0.9); color: white; padding: 15px; z-index: 1000; border-radius: 5px; border: 2px solid #8B0000;">
+				<h3 style="margin: 0 0 10px 0;">👹 DEMOGOGO Monster (45 frames)</h3>
+				<p style="margin: 0;">Haunted house character sprite animation</p>
+				<p style="margin: 5px 0 0 0; font-size: 12px;">Size: ~6.4MB | Optimized for mobile casino gaming</p>
+				<p style="margin: 5px 0 0 0; font-size: 12px; color: #FFB6C1;">Frame range: 00001-00089 (odd numbers only)</p>
+			</div>
+
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				{...args}
+			/>
+		</StoryPixiApp>
+	{/snippet}
+</Story>
+
+<Story name="Monster Sizing Test">
+	{#snippet template()}
+		<StoryPixiApp {assets}>
+			<div style="position: absolute; top: 10px; left: 10px; background: rgba(139, 0, 0, 0.9); color: white; padding: 15px; z-index: 1000; border-radius: 5px;">
+				<h3 style="margin: 0 0 10px 0;">📏 Size Comparison Test</h3>
+				<p style="margin: 0;">Different scales for mobile optimization</p>
+			</div>
+
+			<!-- Large scale for desktop -->
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={200}
+				y={300}
+				scale={0.6}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true}
+				loop={true}
+				animationSpeed={0.08}
+			/>
+
+			<!-- Medium scale for tablet -->
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={450}
+				y={300}
+				scale={0.4}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true}
+				loop={true}
+				animationSpeed={0.12}
+			/>
+
+			<!-- Small scale for mobile -->
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={650}
+				y={300}
+				scale={0.25}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true}
+				loop={true}
+				animationSpeed={0.15}
+			/>
+		</StoryPixiApp>
+	{/snippet}
+</Story>
+
+<Story name="Performance Test">
+	{#snippet template()}
+		<StoryPixiApp {assets}>
+			<div style="position: absolute; top: 10px; left: 10px; background: rgba(139, 0, 0, 0.9); color: white; padding: 15px; z-index: 1000; border-radius: 5px;">
+				<h3 style="margin: 0 0 10px 0;">⚡ Performance Test</h3>
+				<p style="margin: 0;">Multiple instances for stress testing</p>
+				<p style="margin: 5px 0 0 0; font-size: 12px;">Monitor FPS and memory usage</p>
+			</div>
+
+			<!-- Multiple monsters for performance testing -->
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={200} y={200} scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true} loop={true} animationSpeed={0.05}
+			/>
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={400} y={200} scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true} loop={true} animationSpeed={0.08}
+			/>
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={600} y={200} scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true} loop={true} animationSpeed={0.12}
+			/>
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={200} y={400} scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true} loop={true} animationSpeed={0.15}
+			/>
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={400} y={400} scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true} loop={true} animationSpeed={0.20}
+			/>
+			<SpriteSheet
+				key="DEMOGOGO_CHARACTER"
+				x={600} y={400} scale={0.3}
+				anchor={{ x: 0.5, y: 0.5 }}
+				play={true} loop={true} animationSpeed={0.25}
+			/>
+		</StoryPixiApp>
+	{/snippet}
+</Story>

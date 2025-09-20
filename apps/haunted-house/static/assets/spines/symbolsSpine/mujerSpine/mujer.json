@@ -1,0 +1,47 @@
+{
+  "skeleton": {
+    "hash": "mujer-v1.0",
+    "spine": "4.1.00",
+    "x": -64,
+    "y": -64,
+    "width": 128,
+    "height": 128,
+    "fps": 24
+  },
+  "bones": [
+    { "name": "root" }
+  ],
+  "slots": [
+    { "name": "02-mujer", "bone": "root", "attachment": "02-mujer" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "02-mujer": {
+          "02-mujer": {
+            "name": "02-mujer",
+            "width": 120,
+            "height": 135,
+            "x": 0,
+            "rotation": 0,
+            "scaleX": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "animtion0": {
+      "bones": {
+        "root": {
+          "rotate": [
+            { "time": 0, "value": 20 },
+            { "time": 0.25, "value": -20.01 },
+            { "time": 0.5, "value": 20 }
+          ]
+        }
+      }
+    }
+  }
+}

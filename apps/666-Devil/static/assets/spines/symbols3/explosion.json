@@ -1,0 +1,80 @@
+{
+  "skeleton": {
+    "hash": "P+tijEFNrvg-haunted",
+    "spine": "4.1.23",
+    "x": -200,
+    "y": -200,
+    "width": 400,
+    "height": 400
+  },
+  "bones": [
+    { "name": "root" }
+  ],
+  "slots": [
+    { "name": "expl", "bone": "root", "attachment": "symbexpl_", "blend": "normal" },
+    { "name": "expl2", "bone": "root", "attachment": "symbexpl_", "blend": "multiply" }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "expl": {
+          "symbexpl_": {
+            "width": 400,
+            "height": 400,
+            "sequence": { "count": 13, "digits": 2 }
+          }
+        },
+        "expl2": {
+          "symbexpl_": {
+            "width": 400,
+            "height": 400,
+            "sequence": { "count": 13, "digits": 2 }
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "explosion": {
+      "slots": {
+        "expl": {
+          "color": [
+            { "time": 0, "color": "504060ff" },
+            { "time": 0.1, "color": "706080ff" },
+            { "time": 0.3, "color": "908090ff" },
+            { "time": 0.5, "color": "504060ff" }
+          ]
+        },
+        "expl2": {
+          "color": [
+            { "time": 0, "color": "302040ff" },
+            { "time": 0.15, "color": "604070ff" },
+            { "time": 0.35, "color": "805080ff" },
+            { "time": 0.5, "color": "403050ff" }
+          ]
+        }
+      },
+      "attachments": {
+        "default": {
+          "expl": {
+            "symbexpl_": {
+              "sequence": [
+                { "mode": "loop", "delay": 0.0417 },
+                { "time": 0.5333, "mode": "loop", "index": 12 }
+              ]
+            }
+          },
+          "expl2": {
+            "symbexpl_": {
+              "sequence": [
+                { "mode": "loop", "delay": 0.0417 },
+                { "time": 0.5333, "mode": "loop", "index": 12 }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

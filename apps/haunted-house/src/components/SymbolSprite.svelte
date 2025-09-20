@@ -1,0 +1,119 @@
+<script lang="ts">
+	import { Sprite, SpriteSheet, SpineProvider, SpineTrack, type SpriteProps } from 'pixi-svelte';
+
+	import { getSymbolInfo } from '../game/utils';
+	import { SYMBOL_SIZE } from '../game/constants';
+	import { onMount } from 'svelte';
+
+	type Props = {
+		x?: number;
+		y?: number;
+		symbolInfo: ReturnType<typeof getSymbolInfo>;
+		oncomplete?: () => void;
+		loop?: boolean;
+		showWinFrame?: boolean;
+	};
+
+	const props: Props = $props();
+	const isSpriteSheet = $derived(props.symbolInfo.type === 'spriteSheet');
+
+	// Debug logging for sprite animations
+	$effect(() => {
+		if (props.symbolInfo) {
+			console.log('🖼️ SymbolSprite received:', {
+				type: props.symbolInfo.type,
+				assetKey: props.symbolInfo.assetKey,
+				isSpriteSheet,
+				sizeRatios: props.symbolInfo.sizeRatios
+			});
+		}
+	});
+
+	onMount(() => {
+		// For static sprites, call oncomplete immediately
+		if (!isSpriteSheet) {
+			props.oncomplete?.();
+		}
+	});
+
+	$effect(() => {
+		props.symbolInfo;
+		// For static sprites, call oncomplete on symbolInfo changes
+		if (!isSpriteSheet) {
+			props.oncomplete?.();
+		}
+	});
+
+	// Handle completion for spriteSheet animations
+	const handleSpriteSheetComplete = () => {
+		console.log('🎯 SpriteSheet animation completed for:', props.symbolInfo.assetKey);
+
+		// Clear safety timeout since animation completed properly
+		if (timeoutId) {
+			clearTimeout(timeoutId);
+			timeoutId = undefined;
+		}
+
+		props.oncomplete?.();
+	};
+
+	// Safety timeout for animations that might not fire completion events
+	let timeoutId: NodeJS.Timeout | undefined;
+	$effect(() => {
+		if (isSpriteSheet && !props.loop) {
+			// Clear any existing timeout
+			if (timeoutId) clearTimeout(timeoutId);
+
+			// Set a safety timeout (3 seconds should be more than enough for any win animation)
+			timeoutId = setTimeout(() => {
+				console.warn('⚠️ SpriteSheet animation timeout for:', props.symbolInfo.assetKey, '- forcing completion');
+				props.oncomplete?.();
+			}, 3000);
+		}
+
+		// Cleanup on effect cleanup
+		return () => {
+			if (timeoutId) clearTimeout(timeoutId);
+		};
+	});
+
+	// Determine animation speed based on gaming context
+	// Optimized for casino experience - quick enough to maintain excitement but not rushed
+	const getAnimationSpeed = () => {
+		if (props.symbolInfo.type === 'spriteSheet') {
+			// Professional casino timing: 1 second for typical win animation (15-20 frames @ 0.05-0.067 per frame)
+			return 0.08;
+		}
+		return 0.08;
+	};
+</script>
+
+{#if isSpriteSheet}
+	<SpriteSheet
+		x={props.x}
+		y={props.y}
+		anchor={0.5}
+		key={props.symbolInfo.assetKey}
+		width={SYMBOL_SIZE * props.symbolInfo.sizeRatios.width}
+		height={SYMBOL_SIZE * props.symbolInfo.sizeRatios.height}
+		play={true}
+		loop={props.loop ?? false}
+		animationSpeed={getAnimationSpeed()}
+		oncomplete={handleSpriteSheetComplete}
+	/>
+{:else}
+	<Sprite
+		x={props.x}
+		y={props.y}
+		anchor={0.5}
+		key={props.symbolInfo.assetKey}
+		width={SYMBOL_SIZE * props.symbolInfo.sizeRatios.width}
+		height={SYMBOL_SIZE * props.symbolInfo.sizeRatios.height}
+	/>
+{/if}
+
+{#if props.showWinFrame}
+	<SpineProvider x={props.x} y={props.y} key="anticipation" width={SYMBOL_SIZE * 0.19}>
+		<SpineTrack trackIndex={0} animationName={'payframe'} loop />
+	</SpineProvider>
+{/if}

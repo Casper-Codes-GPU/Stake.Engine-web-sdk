@@ -1,0 +1,158 @@
+<script lang="ts">
+	import { Container, Sprite } from 'pixi-svelte';
+
+	// Props
+	interface Props {
+		x?: number;
+		y?: number;
+		scale?: number;
+		spinCircleScale?: number;
+		spinIconScale?: number;
+		betSquareScale?: number;
+		betIconScale?: number;
+		buttonSpacing?: number;
+		disabled?: boolean;
+		increaseDisabled?: boolean;
+		decreaseDisabled?: boolean;
+		onspin?: () => void;
+		onincreaseBet?: () => void;
+		ondecreaseBet?: () => void;
+	}
+
+	let {
+		x = 0,
+		y = 0,
+		scale = 1,
+		spinCircleScale = 0.4,
+		spinIconScale = 0.25,
+		betSquareScale = 0.25,
+		betIconScale = 0.12,
+		buttonSpacing = 270,
+		disabled = false,
+		increaseDisabled = false,
+		decreaseDisabled = false,
+		onspin,
+		onincreaseBet,
+		ondecreaseBet
+	}: Props = $props();
+
+	// Button states
+	let spinHover = $state(false);
+	let increaseHover = $state(false);
+	let decreaseHover = $state(false);
+
+	// Event handlers
+	function handleSpin() {
+		if (!disabled && onspin) {
+			onspin();
+		}
+	}
+
+	function handleIncreaseBet() {
+		if (!disabled && !increaseDisabled && onincreaseBet) {
+			onincreaseBet();
+		}
+	}
+
+	function handleDecreaseBet() {
+		if (!disabled && !decreaseDisabled && ondecreaseBet) {
+			ondecreaseBet();
+		}
+	}
+</script>
+
+<Container {x} {y} {scale}>
+	<!-- Spin Button (Center) -->
+	<Container
+		interactive={!disabled}
+		eventMode="static"
+		cursor={disabled ? 'default' : 'pointer'}
+		onpointerup={handleSpin}
+		onpointerenter={() => (spinHover = true)}
+		onpointerleave={() => (spinHover = false)}
+		scale={spinHover && !disabled ? 1.05 : 1}
+		alpha={disabled ? 0.5 : 1}
+	>
+		<!-- Spin circle background -->
+		<Sprite
+			key="UI_SPIN_CIRCLE"
+			x={0}
+			y={0}
+			anchor={{ x: 0.5, y: 0.5 }}
+			scale={spinCircleScale}
+		/>
+
+		<!-- Spin icon -->
+		<Sprite
+			key="UI_SPIN_ICON"
+			x={0}
+			y={0}
+			anchor={{ x: 0.5, y: 0.5 }}
+			scale={spinIconScale}
+		/>
+	</Container>
+
+	<!-- Decrease Bet Button (Left) -->
+	<Container
+		x={-buttonSpacing}
+		y={0}
+		interactive={!disabled && !decreaseDisabled}
+		eventMode="static"
+		cursor={disabled || decreaseDisabled ? 'default' : 'pointer'}
+		onpointerup={handleDecreaseBet}
+		onpointerenter={() => (decreaseHover = true)}
+		onpointerleave={() => (decreaseHover = false)}
+		scale={decreaseHover && !disabled && !decreaseDisabled ? 1.05 : 1}
+		alpha={disabled || decreaseDisabled ? 0.5 : 1}
+	>
+		<!-- Square background -->
+		<Sprite
+			key="UI_BET_SQUARE_MINUS"
+			x={0}
+			y={0}
+			anchor={{ x: 0.5, y: 0.5 }}
+			scale={betSquareScale}
+		/>
+
+		<!-- Minus icon -->
+		<Sprite
+			key="UI_MINUS_ICON"
+			x={-40}
+			y={-2}
+			anchor={{ x: 0.5, y: 0.5 }}
+			scale={betIconScale}
+		/>
+	</Container>
+
+	<!-- Increase Bet Button (Right) -->
+	<Container
+		x={buttonSpacing}
+		y={0}
+		interactive={!disabled && !increaseDisabled}
+		eventMode="static"
+		cursor={disabled || increaseDisabled ? 'default' : 'pointer'}
+		onpointerup={handleIncreaseBet}
+		onpointerenter={() => (increaseHover = true)}
+		onpointerleave={() => (increaseHover = false)}
+		scale={increaseHover && !disabled && !increaseDisabled ? 1.05 : 1}
+		alpha={disabled || increaseDisabled ? 0.5 : 1}
+	>
+		<!-- Square background -->
+		<Sprite
+			key="UI_BET_SQUARE_PLUS"
+			x={0}
+			y={0}
+			anchor={{ x: 0.5, y: 0.5 }}
+			scale={betSquareScale}
+		/>
+
+		<!-- Plus icon -->
+		<Sprite
+			key="UI_PLUS_ICON"
+			x={40}
+			y={1}
+			anchor={{ x: 0.5, y: 0.5 }}
+			scale={betIconScale}
+		/>
+	</Container>
+</Container>

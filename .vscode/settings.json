@@ -1,5 +1,5 @@
 {
-	"workbench.iconTheme": "material-icon-theme",
+	"workbench.iconTheme": "vscode-icons",
 	"workbench.colorTheme": "Atom One Dark",
 	"workbench.statusBar.visible": true,
 	"editor.renderWhitespace": "all",
@@ -43,12 +43,7 @@
 		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml"
 	},
 	"window.commandCenter": true,
-	"cSpell.words": [
-		"bigwin",
-		"Payline",
-		"pixi",
-		"xstate"
-	],
+	"cSpell.words": ["bigwin", "Payline", "pixi", "xstate"],
 	"workbench.editor.empty.hint": "hidden",
 	"scm.showHistoryGraph": false
 }

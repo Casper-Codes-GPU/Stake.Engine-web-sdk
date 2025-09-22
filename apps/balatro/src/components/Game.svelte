@@ -26,7 +26,7 @@
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import I18nTest from './I18nTest.svelte';
-	import NewUi from './NewUi.svelte';
+	import GameDock from './GameDock.svelte';
 
 	const context = getContext();
 
@@ -57,7 +57,6 @@
 			Ref: https://developer.chrome.com/blog/autoplay
 		-->
 		<Sound />
-
 		<MainContainer>
 			<BoardFrame />
 		</MainContainer>
@@ -85,7 +84,7 @@
 				/>
 			{/snippet}
 		</UI> -->
-		<NewUi />
+		<GameDock />
 		<Win />
 		<FreeSpinIntro />
 		{#if ['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType())}

@@ -24,7 +24,7 @@ const boardHeight = $derived(() => {
 	switch (stateLayoutDerived.canvasSizeType()) {
 		case 'mobile':
 		case 'smallMobile':
-			return 0.35;
+			return 0.30;
 		case 'tablet':
 		case 'largeTablet':
 			return 0.4;
@@ -34,8 +34,6 @@ const boardHeight = $derived(() => {
 			return 0.5;
 	}
 });
-
-console.log('boardHeight', boardHeight());
 
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 	if (rawSymbol.name === 'S') {

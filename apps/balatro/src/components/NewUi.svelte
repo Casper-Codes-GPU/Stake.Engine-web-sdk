@@ -2,7 +2,7 @@
   import { getContext } from '../game/context';
   import { stateBet, stateBetDerived, stateConfig } from 'state-shared';
   import { Tween } from 'svelte/motion';
-  import { numberToCurrencyString } from 'utils-shared/amount';
+  import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
   import { i18nDerived } from '../i18n/i18nDerived';
 
   type EmitterEventUi =
@@ -28,6 +28,14 @@
   const balanceTween = new Tween(stateBet.balanceAmount);
   const balance = $derived(numberToCurrencyString(balanceTween.current));
   $effect(() => { balanceTween.set(stateBet.balanceAmount); });
+
+  // Last win tween (unchanged)
+  const winBookEventAmountTween = new Tween(stateBet.winBookEventAmount);
+	const label = $derived(i18nDerived.win());
+	const lastWinValue = $derived(bookEventAmountToCurrencyString(winBookEventAmountTween.current));
+  $effect(() => {
+		winBookEventAmountTween.set(stateBet.winBookEventAmount);
+	});
 
   // Local UI state
   let stopDisabled = false;
@@ -185,8 +193,8 @@
       <div class="value">{balance}</div>
     </div>
     <div class="mobile-card">
-      <div class="label">Last Win</div>
-      <div class="value">—</div>
+      <div class="label">{label}</div>
+      <div class="value">{lastWinValue}</div>
     </div>
   </div>
 

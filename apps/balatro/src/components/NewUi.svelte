@@ -3,6 +3,7 @@
   import { stateBet, stateBetDerived, stateConfig } from 'state-shared';
   import { Tween } from 'svelte/motion';
   import { numberToCurrencyString } from 'utils-shared/amount';
+  import { i18nDerived } from '../i18n/i18nDerived';
 
   type EmitterEventUi =
     | { type: 'hotKeySpace' } | { type: 'hotKeyEscape' }
@@ -136,7 +137,7 @@
 
   function money(n?: number) {
     return typeof n === 'number'
-      ? n.toLocaleString(undefined, { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 })
+      ? n.toLocaleString(undefined, { style: 'currency', currency: stateBet.currency, minimumFractionDigits: 2 })
       : '—';
   }
 </script>
@@ -148,9 +149,9 @@
   <!-- Bet controls -->
   <div class="mobile-bet-card">
     <div class="bet-row">
-      <div class="label">Bet</div>
+      <div class="label">{i18nDerived.bet()}</div>
       <div class="bet-value">{money(bet())}</div>
-      <button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}>Max</button>
+      <button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}>{i18nDerived.max()}</button>
     </div>
     <div class="slider-row">
       <button class="btn-square" onclick={decrease} disabled={notIdle() || atSmallest()} aria-label="decrease">
@@ -180,7 +181,7 @@
   </div> -->
     <div class="mobile-stack">
     <div class="mobile-card">
-      <div class="label">Balance</div>
+      <div class="label">{i18nDerived.balance()}</div>
       <div class="value">{balance}</div>
     </div>
     <div class="mobile-card">

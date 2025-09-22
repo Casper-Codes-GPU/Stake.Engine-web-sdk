@@ -201,8 +201,9 @@
 	<!-- Bet controls -->
 	<div class="mobile-bet-card">
 		<div class="bet-row">
-			<div class="label">{i18nDerived.bet()}</div>
-			<div class="bet-value">{money(bet())}</div>
+			<div class="label">{i18nDerived.bet()}
+        <span class="bet-value">{money(bet())}</span>
+      </div>
 			<button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}
 				>{i18nDerived.max()}</button
 			>
@@ -346,6 +347,8 @@
 		letter-spacing: 0.14em;
 		font-weight: 800;
 		color: var(--nd-muted, #bbb);
+    display: flex;
+    flex-direction: column;
 	}
 	.value {
 		font-size: 16px;
@@ -358,7 +361,14 @@
 		font-weight: 900;
 		line-height: 1.1;
 		word-break: break-all;
-		margin-left: 26px;
+		margin-top: 0.5rem;
+    color: var(--nd-white, #fff);
+    position: absolute;
+    top: 2rem;
+    left: 15rem;
+    @media (width >= 64rem) {
+      position: inherit;
+		}
 	}
 	.mobile-bet-card {
 		background: var(--nd-card, #222);
@@ -409,8 +419,8 @@
 		gap: 10px;
 		@media (width >= 64rem) {
 			position: absolute;
-			right: 80px;
-			top: 3px;
+			right: 5rem;
+			top: 0.5rem;
 		}
 	}
 	.btn-square {

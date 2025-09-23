@@ -337,7 +337,12 @@
 		justify-content: space-between;
 	}
 	.mobile-card {
-		flex: 1;
+		background: linear-gradient(
+			180deg,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(7, 9, 13, 0.35) 32%,
+			rgba(7, 9, 13, 0.65) 100%
+		);
 		border-radius: 12px;
 		color: var(--nd-white, #fff);
 		padding: 8px 10px;
@@ -345,15 +350,12 @@
 		flex-direction: column;
 		gap: 4px;
 		min-width: 0;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		background: linear-gradient(
-			180deg,
-			rgba(0, 0, 0, 0) 0%,
-			rgba(7, 9, 13, 0.35) 32%,
-			rgba(7, 9, 13, 0.65) 100%
-		);
 		-webkit-backdrop-filter: var(--backdrop-blur);
 		backdrop-filter: var(--backdrop-blur);
+		box-shadow:
+		0 -6px 28px rgba(0, 0, 0, 0.38),
+		inset 0 1px 0 var(--glass-elev);
+		flex: 1;
 	}
 	.label {
 		font-size: 11px;
@@ -416,11 +418,12 @@
 		min-width: 56px;
 		border-radius: 999px;
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-		border: 1px solid var(--nd-border, #444);
+		border: 1px solid var(--nd-border);
 		font-weight: 900;
 		letter-spacing: 0.04em;
 		cursor: pointer;
 		color: var(--nd-white, #fff);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.40);
 		transition:
 			transform 0.06s,
 			border-color 0.12s,
@@ -446,41 +449,18 @@
 		width: 40px;
 		height: 40px;
 		border-radius: 10px;
-		border: 1px solid var(--nd-border, #444);
+		border: 1px solid var(--nd-border);
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
 		color: var(--nd-white, #fff);
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 	}
 	.btn-square[disabled] {
 		opacity: 0.45;
 		cursor: not-allowed;
-	}
-	.chip-row,
-	.mobile-chip-row {
-		display: flex;
-		gap: 10px;
-		justify-content: center;
-	}
-	.chip {
-		height: 36px;
-		padding: 0 12px;
-		border-radius: 999px;
-		border: 1px solid var(--nd-border, #444);
-		background: var(--nd-card, #222);
-		color: var(--nd-white, #fff);
-		font-weight: 800;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		cursor: pointer;
-	}
-	.chip[data-on='true'] {
-		border-color: var(--nd-accent, #6cf7ff);
-		box-shadow:
-			0 0 0 1px var(--nd-accent, #6cf7ff) inset,
-			0 0 20px rgba(108, 247, 255, 0.25);
 	}
 	.orb {
 		width: 64px;

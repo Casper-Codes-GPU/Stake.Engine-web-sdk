@@ -24,12 +24,12 @@ const boardHeight = $derived(() => {
 	switch (stateLayoutDerived.canvasSizeType()) {
 		case 'mobile':
 		case 'smallMobile':
-			return 0.30;
+			return 0.25;
 		case 'tablet':
 		case 'largeTablet':
-			return 0.4;
+			return 0.35;
 		case 'desktop':
-			return 0.5;
+			return 0.45;
 		default:
 			return 0.5;
 	}

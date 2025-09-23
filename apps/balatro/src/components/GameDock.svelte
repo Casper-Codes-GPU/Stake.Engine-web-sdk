@@ -362,14 +362,21 @@
 		line-height: 1.1;
 		word-break: break-all;
 		margin-top: 0.5rem;
+    
+    
+    
     color: var(--nd-white, #fff);
     position: absolute;
     top: 2rem;
-    left: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
     @media (width >= 64rem) {
       position: inherit;
+      transform: translateX(0%);
 		}
 	}
+
 	.mobile-bet-card {
 		background: var(--nd-card, #222);
 		border-radius: 14px;

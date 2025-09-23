@@ -557,6 +557,7 @@
 			position: inherit;
 			left: 0;
 			bottom: 0;
+			margin-left: 0px;
 		}
 	}
 

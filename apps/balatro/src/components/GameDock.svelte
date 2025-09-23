@@ -1,84 +1,10 @@
-<div class="mobile-dock">
-	<!-- Balance and Last Win -->
-
-	<!-- Bet controls -->
-	<div class="mobile-bet-card">
-		<div class="bet-row">
-			<div class="label">{i18nDerived.bet()}
-        <span class="bet-value">{money(bet())}</span>
-      </div>
-			<button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}
-				>{i18nDerived.max()}</button
-			>
-		</div>
-		<div class="slider-row">
-			<button
-				class="btn-square"
-				onclick={decrease}
-				disabled={notIdle() || atSmallest()}
-				aria-label="decrease"
-			>
-				<svg width="18" height="18" viewBox="0 0 24 24"
-					><path d="M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
-				>
-			</button>
-			<button
-				class="orb"
-				class:spin-anim={isSpinning()}
-				onclick={onSpinClick}
-				disabled={!stateBetDerived.isBetCostAvailable()}
-				aria-label="spin"
-				title={x.isIdle() ? 'Spin' : stopDisabled ? 'Stop (disabled)' : 'Stop'}
-			>
-				<div class="ring"></div>
-			</button>
-			<button
-				class="btn-square"
-				onclick={increase}
-				disabled={notIdle() || atBiggest()}
-				aria-label="increase"
-			>
-				<svg width="18" height="18" viewBox="0 0 24 24"
-					><path d="M12 6v12M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
-				>
-			</button>
-		</div>
-		<div class="buy-bonus-container">
-			<div class="buy-bonus-icon-container-left">	
-				<Info></Info>
-			</div>
-			<button class="pill" onclick={openModal} style="min-width:120px;">
-				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
-			</button>
-			<div class="buy-bonus-icon-container-right">	
-				{#if isMuted()}
-					<VolumeX onclick={openSettings} />
-				{:else}
-					<Volume2 onclick={openSettings} />
-				{/if}
-			</div>
-		</div>
-	</div>
-	<div class="mobile-stack">
-		<div class="mobile-card">
-			<div class="label">{i18nDerived.balance()}</div>
-			<div class="value">{balance}</div>
-		</div>
-		<div class="mobile-card">
-			<div class="label">{label}</div>
-			<div class="value">{lastWinValue}</div>
-		</div>
-	</div>
-</div>
-
 <script lang="ts">
 	import { getContext } from '../game/context';
 	import { stateBet, stateBetDerived, stateConfig, stateModal, stateSound } from 'state-shared';
-	import { derived } from 'svelte/store';
 	import { Tween } from 'svelte/motion';
 	import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
-  import { Info, Volume2, VolumeX } from '@lucide/svelte';
+	import { Info, Volume2, VolumeX } from '@lucide/svelte';
 
 	type EmitterEventUi =
 		| { type: 'hotKeySpace' }
@@ -122,7 +48,9 @@
 
 	const isMuted = $derived(() => stateSound.volumeValueMaster === 0);
 
-
+	const openInfo = () => {
+		stateModal.modal = { name: 'gameRules' };
+	};
 
 	// Last win tween (unchanged)
 	const winBookEventAmountTween = new Tween(stateBet.winBookEventAmount);
@@ -276,6 +204,77 @@
 	}
 </script>
 
+<div class="mobile-dock">
+	<div class="mobile-bet-card">
+		<div class="bet-row">
+			<div class="label">
+				{i18nDerived.bet()}
+				<span class="bet-value">{money(bet())}</span>
+			</div>
+			<button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}
+				>{i18nDerived.max()}</button
+			>
+		</div>
+		<div class="slider-row">
+			<button
+				class="btn-square"
+				onclick={decrease}
+				disabled={notIdle() || atSmallest()}
+				aria-label="decrease"
+			>
+				<svg width="18" height="18" viewBox="0 0 24 24"
+					><path d="M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
+				>
+			</button>
+			<button
+				class="orb"
+				class:spin-anim={isSpinning()}
+				onclick={onSpinClick}
+				disabled={!stateBetDerived.isBetCostAvailable()}
+				aria-label="spin"
+				title={x.isIdle() ? 'Spin' : stopDisabled ? 'Stop (disabled)' : 'Stop'}
+			>
+				<div class="ring"></div>
+			</button>
+			<button
+				class="btn-square"
+				onclick={increase}
+				disabled={notIdle() || atBiggest()}
+				aria-label="increase"
+			>
+				<svg width="18" height="18" viewBox="0 0 24 24"
+					><path d="M12 6v12M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
+				>
+			</button>
+		</div>
+		<div class="buy-bonus-container">
+			<div class="buy-bonus-icon-container-left">
+				<Info onclick={openInfo}></Info>
+			</div>
+			<button class="pill" onclick={openModal} style="min-width:120px;">
+				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
+			</button>
+			<div class="buy-bonus-icon-container-right">
+				{#if isMuted()}
+					<VolumeX onclick={openSettings} />
+				{:else}
+					<Volume2 onclick={openSettings} />
+				{/if}
+			</div>
+		</div>
+	</div>
+	<div class="mobile-stack">
+		<div class="mobile-card">
+			<div class="label">{i18nDerived.balance()}</div>
+			<div class="value">{balance}</div>
+		</div>
+		<div class="mobile-card">
+			<div class="label">{label}</div>
+			<div class="value">{lastWinValue}</div>
+		</div>
+	</div>
+</div>
+
 <style>
 	:root {
 		--glass-bg: rgba(18, 21, 28, 0.45);
@@ -339,7 +338,6 @@
 	}
 	.mobile-card {
 		flex: 1;
-		background: var(--nd-card, #222);
 		border-radius: 12px;
 		color: var(--nd-white, #fff);
 		padding: 8px 10px;
@@ -347,10 +345,15 @@
 		flex-direction: column;
 		gap: 4px;
 		min-width: 0;
-		background: rgba(0, 0, 0, 0.25);
 		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(0px);
-		-webkit-backdrop-filter: blur(0px);
+		background: linear-gradient(
+			180deg,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(7, 9, 13, 0.35) 32%,
+			rgba(7, 9, 13, 0.65) 100%
+		);
+		-webkit-backdrop-filter: var(--backdrop-blur);
+		backdrop-filter: var(--backdrop-blur);
 	}
 	.label {
 		font-size: 11px;
@@ -358,8 +361,8 @@
 		letter-spacing: 0.14em;
 		font-weight: 800;
 		color: var(--nd-muted, #bbb);
-    display: flex;
-    flex-direction: column;
+		display: flex;
+		flex-direction: column;
 	}
 	.value {
 		font-size: 16px;
@@ -373,18 +376,16 @@
 		line-height: 1.1;
 		word-break: break-all;
 		margin-top: 0.5rem;
-    
-    
-    
-    color: var(--nd-white, #fff);
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    @media (width >= 64rem) {
-      position: inherit;
-      transform: translateX(0%);
+
+		color: var(--nd-white, #fff);
+		position: absolute;
+		top: 2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: nowrap;
+		@media (width >= 64rem) {
+			position: inherit;
+			transform: translateX(0%);
 		}
 	}
 
@@ -551,12 +552,11 @@
 		bottom: 19px;
 		cursor: pointer;
 		margin-top: 0.5rem;
-		margin-left: 8px;
+		margin-left: 5px;
 		@media (width >= 64rem) {
 			position: inherit;
 			left: 0;
 			bottom: 0;
-			margin-left: 0px;
 		}
 	}
 
@@ -572,12 +572,11 @@
 		bottom: 19px;
 		cursor: pointer;
 		margin-top: 0.5rem;
-		margin-right: 8px;
+		margin-right: 5px;
 		@media (width >= 64rem) {
 			position: inherit;
 			left: 0;
 			bottom: 0;
-			margin-right: 0px;
 		}
 	}
 </style>

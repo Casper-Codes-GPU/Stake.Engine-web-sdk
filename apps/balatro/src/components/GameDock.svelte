@@ -51,7 +51,7 @@
 				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
 			</button>
 			<div class="buy-bonus-icon-container-right">	
-				<Info></Info>
+				<Volume2></Volume2>
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
 	import { Tween } from 'svelte/motion';
 	import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
-  import { Info } from '@lucide/svelte';
+  import { Info, Volume2 } from '@lucide/svelte';
 
 	type EmitterEventUi =
 		| { type: 'hotKeySpace' }
@@ -531,7 +531,6 @@
 	.buy-bonus-icon-container-left {
 		width: 22px;
 		height: 22px;
-		margin-right: 8px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -540,29 +539,34 @@
 		left: 1rem;
 		bottom: 19px;
 		cursor: pointer;
+		margin-top: 0.5rem;
+		margin-left: 8px;
 		@media (width >= 64rem) {
 			position: inherit;
 			left: 0;
 			bottom: 0;
+			margin-left: 0px;
 		}
 	}
 
 	.buy-bonus-icon-container-right {
 		width: 22px;
 		height: 22px;
-		margin-right: 8px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: var(--nd-white, #fff);
 		position: absolute;
-		left: 1rem;
+		right: 1rem;
 		bottom: 19px;
 		cursor: pointer;
+		margin-top: 0.5rem;
+		margin-right: 8px;
 		@media (width >= 64rem) {
 			position: inherit;
 			left: 0;
 			bottom: 0;
+			margin-right: 0px;
 		}
 	}
 </style>

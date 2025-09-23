@@ -187,12 +187,6 @@
 	}
 	const stopAutoplay = () => (autoplayRemaining = null);
 
-	// --- Buy Bonus ---
-	function buyBonus() {
-		// console.log('trigger buyBonus');/
-		// broadcast({ type: 'buyBonus' });
-	}
-
 	function money(n?: number) {
 		return typeof n === 'number'
 			? n.toLocaleString(undefined, {
@@ -251,7 +245,12 @@
 			<div class="buy-bonus-icon-container-left">
 				<Info onclick={openInfo}></Info>
 			</div>
-			<button class="pill" onclick={openModal} style="min-width:120px;">
+			<button
+				class="pill"
+				onclick={openModal}
+				style="min-width:120px;"
+				disabled={isSpinning()}
+			>
 				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
 			</button>
 			<div class="buy-bonus-icon-container-right">

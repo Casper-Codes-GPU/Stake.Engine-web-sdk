@@ -515,8 +515,8 @@
 	}
 
 	.buy-bonus-icon-container-left {
-		width: 22px;
-		height: 22px;
+		width: 24px;
+		height: 24px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -536,8 +536,8 @@
 	}
 
 	.buy-bonus-icon-container-right {
-		width: 22px;
-		height: 22px;
+		width: 24px;
+		height: 24px;
 		display: flex;
 		align-items: center;
 		justify-content: center;

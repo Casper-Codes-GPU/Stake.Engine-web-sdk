@@ -51,7 +51,11 @@
 				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
 			</button>
 			<div class="buy-bonus-icon-container-right">	
-				<Volume2></Volume2>
+				{#if isMuted()}
+					<VolumeX onclick={openSettings} />
+				{:else}
+					<Volume2 onclick={openSettings} />
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -69,11 +73,12 @@
 
 <script lang="ts">
 	import { getContext } from '../game/context';
-	import { stateBet, stateBetDerived, stateConfig, stateModal } from 'state-shared';
+	import { stateBet, stateBetDerived, stateConfig, stateModal, stateSound } from 'state-shared';
+	import { derived } from 'svelte/store';
 	import { Tween } from 'svelte/motion';
 	import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
-  import { Info, Volume2 } from '@lucide/svelte';
+  import { Info, Volume2, VolumeX } from '@lucide/svelte';
 
 	type EmitterEventUi =
 		| { type: 'hotKeySpace' }
@@ -112,6 +117,12 @@
 
 	// Buy Bonus button (unchanged)
 	const openModal = () => (stateModal.modal = { name: 'buyBonus' });
+
+	const openSettings = () => (stateModal.modal = { name: 'settings' });
+
+	const isMuted = $derived(() => stateSound.volumeValueMaster === 0);
+
+
 
 	// Last win tween (unchanged)
 	const winBookEventAmountTween = new Tween(stateBet.winBookEventAmount);

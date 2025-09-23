@@ -1,9 +1,79 @@
+<div class="mobile-dock">
+	<!-- Balance and Last Win -->
+
+	<!-- Bet controls -->
+	<div class="mobile-bet-card">
+		<div class="bet-row">
+			<div class="label">{i18nDerived.bet()}
+        <span class="bet-value">{money(bet())}</span>
+      </div>
+			<button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}
+				>{i18nDerived.max()}</button
+			>
+		</div>
+		<div class="slider-row">
+			<button
+				class="btn-square"
+				onclick={decrease}
+				disabled={notIdle() || atSmallest()}
+				aria-label="decrease"
+			>
+				<svg width="18" height="18" viewBox="0 0 24 24"
+					><path d="M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
+				>
+			</button>
+			<button
+				class="orb"
+				class:spin-anim={isSpinning()}
+				onclick={onSpinClick}
+				disabled={!stateBetDerived.isBetCostAvailable()}
+				aria-label="spin"
+				title={x.isIdle() ? 'Spin' : stopDisabled ? 'Stop (disabled)' : 'Stop'}
+			>
+				<div class="ring"></div>
+			</button>
+			<button
+				class="btn-square"
+				onclick={increase}
+				disabled={notIdle() || atBiggest()}
+				aria-label="increase"
+			>
+				<svg width="18" height="18" viewBox="0 0 24 24"
+					><path d="M12 6v12M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
+				>
+			</button>
+		</div>
+		<div class="buy-bonus-container">
+			<div class="buy-bonus-icon-container-left">	
+				<Info></Info>
+			</div>
+			<button class="pill" onclick={openModal} style="min-width:120px;">
+				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
+			</button>
+			<div class="buy-bonus-icon-container-right">	
+				<Info></Info>
+			</div>
+		</div>
+	</div>
+	<div class="mobile-stack">
+		<div class="mobile-card">
+			<div class="label">{i18nDerived.balance()}</div>
+			<div class="value">{balance}</div>
+		</div>
+		<div class="mobile-card">
+			<div class="label">{label}</div>
+			<div class="value">{lastWinValue}</div>
+		</div>
+	</div>
+</div>
+
 <script lang="ts">
 	import { getContext } from '../game/context';
 	import { stateBet, stateBetDerived, stateConfig, stateModal } from 'state-shared';
 	import { Tween } from 'svelte/motion';
 	import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
+  import { Info } from '@lucide/svelte';
 
 	type EmitterEventUi =
 		| { type: 'hotKeySpace' }
@@ -114,7 +184,7 @@
 	});
 
 	const isSpinning = $derived(() => !x.isIdle());
-	const canSpin = $derived(() => stateBetDerived.isBetCostAvailable() && !isSpinning);
+	// const canSpin = $derived(() => stateBetDerived.isBetCostAvailable() && !isSpinning);
 
 	const betAction = () => broadcast({ type: 'bet' });
 	const stopAction = () => {
@@ -194,76 +264,6 @@
 			: '—';
 	}
 </script>
-
-<div class="mobile-dock">
-	<!-- Balance and Last Win -->
-
-	<!-- Bet controls -->
-	<div class="mobile-bet-card">
-		<div class="bet-row">
-			<div class="label">{i18nDerived.bet()}
-        <span class="bet-value">{money(bet())}</span>
-      </div>
-			<button class="pill" onclick={maxBet} disabled={notIdle() || atBiggest()}
-				>{i18nDerived.max()}</button
-			>
-		</div>
-		<div class="slider-row">
-			<button
-				class="btn-square"
-				onclick={decrease}
-				disabled={notIdle() || atSmallest()}
-				aria-label="decrease"
-			>
-				<svg width="18" height="18" viewBox="0 0 24 24"
-					><path d="M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
-				>
-			</button>
-			<button
-				class="orb"
-				class:spin-anim={isSpinning()}
-				onclick={onSpinClick}
-				disabled={!stateBetDerived.isBetCostAvailable()}
-				aria-label="spin"
-				title={x.isIdle() ? 'Spin' : stopDisabled ? 'Stop (disabled)' : 'Stop'}
-			>
-				<div class="ring"></div>
-			</button>
-			<button
-				class="btn-square"
-				onclick={increase}
-				disabled={notIdle() || atBiggest()}
-				aria-label="increase"
-			>
-				<svg width="18" height="18" viewBox="0 0 24 24"
-					><path d="M12 6v12M6 12h12" stroke="white" stroke-width="2" stroke-linecap="round" /></svg
-				>
-			</button>
-		</div>
-		<div class="buy-bonus-container">
-			<button class="pill" onclick={openModal} style="min-width:120px;">
-				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
-			</button>
-		</div>
-	</div>
-	<!-- Turbo/Auto -->
-	<!-- <div class="mobile-chip-row">
-    <button class="chip" data-on={isTurbo} onclick={toggleTurbo} disabled={isSpinning()}>Turbo {isTurbo ? 'On' : 'Off'}</button>
-    <button class="chip" data-on={autoplayRemaining !== null} onclick={() => (autoplayRemaining ? stopAutoplay() : startAutoplay(50))}>
-      {autoplayRemaining ? `Auto ${autoplayRemaining === Infinity ? '∞' : autoplayRemaining}` : 'Auto 50'}
-    </button>
-  </div> -->
-	<div class="mobile-stack">
-		<div class="mobile-card">
-			<div class="label">{i18nDerived.balance()}</div>
-			<div class="value">{balance}</div>
-		</div>
-		<div class="mobile-card">
-			<div class="label">{label}</div>
-			<div class="value">{lastWinValue}</div>
-		</div>
-	</div>
-</div>
 
 <style>
 	:root {
@@ -524,7 +524,45 @@
 		justify-content: center;
 		margin-top: 10px;
 		@media (width >= 64rem) {
-			justify-content: right;
+			justify-content: space-between;
+		}
+	}
+
+	.buy-bonus-icon-container-left {
+		width: 22px;
+		height: 22px;
+		margin-right: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--nd-white, #fff);
+		position: absolute;
+		left: 1rem;
+		bottom: 19px;
+		cursor: pointer;
+		@media (width >= 64rem) {
+			position: inherit;
+			left: 0;
+			bottom: 0;
+		}
+	}
+
+	.buy-bonus-icon-container-right {
+		width: 22px;
+		height: 22px;
+		margin-right: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--nd-white, #fff);
+		position: absolute;
+		left: 1rem;
+		bottom: 19px;
+		cursor: pointer;
+		@media (width >= 64rem) {
+			position: inherit;
+			left: 0;
+			bottom: 0;
 		}
 	}
 </style>

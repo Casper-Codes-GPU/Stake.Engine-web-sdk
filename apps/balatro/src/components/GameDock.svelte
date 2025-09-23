@@ -4,7 +4,7 @@
 	import { Tween } from 'svelte/motion';
 	import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import { Info, Volume2, VolumeX, Zap, ZapOff } from '@lucide/svelte';
+	import { Info, Volume1, Volume2, VolumeX, Zap, ZapOff } from '@lucide/svelte';
 
 	type EmitterEventUi =
 		| { type: 'hotKeySpace' }
@@ -47,6 +47,7 @@
 	const openSettings = () => (stateModal.modal = { name: 'settings' });
 
 	const isMuted = $derived(() => stateSound.volumeValueMaster === 0);
+	const isLowVolume = $derived(() => stateSound.volumeValueMaster > 0 && stateSound.volumeValueMaster < 50);
 
 	const openInfo = () => {
 		stateModal.modal = { name: 'gameRules' };
@@ -226,6 +227,8 @@
 			<div class="buy-bonus-icon-container-left">
 				{#if isMuted()}
 					<VolumeX onclick={openSettings} />
+				{:else if isLowVolume()}
+					<Volume1 onclick={openSettings} />
 				{:else}
 					<Volume2 onclick={openSettings} />
 				{/if}

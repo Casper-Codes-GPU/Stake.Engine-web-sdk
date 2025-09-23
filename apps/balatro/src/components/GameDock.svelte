@@ -4,7 +4,7 @@
 	import { Tween } from 'svelte/motion';
 	import { numberToCurrencyString, bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import { Info, Volume2, VolumeX } from '@lucide/svelte';
+	import { Info, Volume2, VolumeX, Zap, ZapOff } from '@lucide/svelte';
 
 	type EmitterEventUi =
 		| { type: 'hotKeySpace' }
@@ -62,8 +62,6 @@
 
 	// Local UI state
 	let stopDisabled = false;
-	let autoplayRemaining: number | null = null;
-	let isTurbo = (ctx.stateGame as any)?.isTurbo ?? false;
 
 	// ----- BET: use discrete denom options (source of truth) -----
 	// Always keep options sorted ascending
@@ -133,59 +131,19 @@
 		}
 	};
 
-	function toggleTurbo() {
-		isTurbo = !isTurbo;
-		(ctx.stateGame as any).isTurbo = isTurbo;
-		broadcast({ type: 'soundBetMode', betModeKey: isTurbo ? 'turbo_on' : 'turbo_off' });
-	}
-
-	function waitForIdle(timeout = isTurbo ? 7000 : 15000): Promise<void> {
-		return new Promise((resolve) => {
-			const t = setTimeout(resolve, timeout);
-			const i = setInterval(() => {
-				if (x.isIdle()) {
-					clearTimeout(t);
-					clearInterval(i);
-					resolve();
-				}
-			}, 50);
-		});
-	}
-
 	async function spinOnce() {
 		if (!x.isIdle()) return;
 		broadcast({ type: 'soundPressBet' });
 		betAction();
-		await waitForIdle();
 	}
 
 	async function onSpinClick() {
 		if (x.isIdle()) {
-			autoplayRemaining = null;
 			await spinOnce();
 		} else {
 			stopAction();
 		}
 	}
-
-	async function startAutoplay(count: number | null) {
-		broadcast({ type: 'autoBet' });
-		autoplayRemaining = count;
-		while (
-			autoplayRemaining === Infinity ||
-			(typeof autoplayRemaining === 'number' && autoplayRemaining > 0)
-		) {
-			if (!x.isIdle()) await waitForIdle();
-			if (!stateBetDerived.isBetCostAvailable()) break;
-			await spinOnce();
-			if (autoplayRemaining !== Infinity && typeof autoplayRemaining === 'number') {
-				autoplayRemaining = Math.max(0, autoplayRemaining - 1);
-			}
-			await new Promise((r) => setTimeout(r, isTurbo ? 50 : 240));
-		}
-		if (autoplayRemaining !== Infinity) autoplayRemaining = null;
-	}
-	const stopAutoplay = () => (autoplayRemaining = null);
 
 	function money(n?: number) {
 		return typeof n === 'number'
@@ -196,6 +154,29 @@
 				})
 			: '—';
 	}
+
+	const turboActive = $derived(() => stateBet.isTurbo);
+	const turboDisabled = $derived(() => stateBet.isSpaceHold);
+
+	// --- Add this handler (same behavior as your Pixi UiButton):
+	function toggleTurbo() {
+		ee.broadcast({ type: 'soundPressGeneral' });
+		stateBetDerived.updateIsTurbo(!stateBet.isTurbo, { persistent: true });
+	}
+
+	// --- Replace your current subscribeOnMount block with this combined one:
+	ee.subscribeOnMount?.({
+		stopButtonClick: () => {
+			stopDisabled = true;
+			// force turbo ON while stopping (non-persistent), like your UiButton
+			stateBetDerived.updateIsTurbo(true, { persistent: false });
+		},
+		stopButtonEnable: () => {
+			stopDisabled = false;
+			// release to turbo OFF (non-persistent)
+			stateBetDerived.updateIsTurbo(false, { persistent: false });
+		},
+	});
 </script>
 
 <div class="mobile-dock">
@@ -243,22 +224,30 @@
 		</div>
 		<div class="buy-bonus-container">
 			<div class="buy-bonus-icon-container-left">
-				<Info onclick={openInfo}></Info>
-			</div>
-			<button
-				class="pill"
-				onclick={openModal}
-				style="min-width:120px;"
-				disabled={isSpinning()}
-			>
-				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
-			</button>
-			<div class="buy-bonus-icon-container-right">
 				{#if isMuted()}
 					<VolumeX onclick={openSettings} />
 				{:else}
 					<Volume2 onclick={openSettings} />
 				{/if}
+			</div>
+			<button class="pill" onclick={openModal} style="min-width:120px;" disabled={isSpinning()}>
+				{i18nDerived.buyBonus ? i18nDerived.buyBonus() : 'Buy Bonus'}
+			</button>
+			<div class="buy-bonus-icon-container-right">
+				<div
+					class="buy-bonus-icon-container-center"
+					class:turbo-on={turboActive()}
+					class:disabled={turboDisabled()}
+					aria-pressed={turboActive()}
+					aria-disabled={turboDisabled()}
+					title={turboActive() ? 'Turbo: ON' : 'Turbo: OFF'}
+				>
+					{#if turboActive()}
+						<Zap onclick={toggleTurbo} />
+					{:else}
+						<ZapOff onclick={toggleTurbo} />
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -272,6 +261,12 @@
 			<div class="value">{lastWinValue}</div>
 		</div>
 	</div>
+</div>
+
+<div>
+	<button class="info-button-container" onclick={openInfo} aria-label="info">
+	<Info onclick={openInfo}></Info>
+	</button>
 </div>
 
 <style>
@@ -352,8 +347,8 @@
 		-webkit-backdrop-filter: var(--backdrop-blur);
 		backdrop-filter: var(--backdrop-blur);
 		box-shadow:
-		0 -6px 28px rgba(0, 0, 0, 0.38),
-		inset 0 1px 0 var(--glass-elev);
+			0 -6px 28px rgba(0, 0, 0, 0.38),
+			inset 0 1px 0 var(--glass-elev);
 		flex: 1;
 	}
 	.label {
@@ -422,7 +417,7 @@
 		letter-spacing: 0.04em;
 		cursor: pointer;
 		color: var(--nd-white, #fff);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.40);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 		transition:
 			transform 0.06s,
 			border-color 0.12s,
@@ -558,5 +553,38 @@
 			left: 0;
 			bottom: 0;
 		}
+	}
+
+	.buy-bonus-icon-container-center {
+		color: var(--nd-white, #fff);
+		cursor: pointer;
+		@media (width >= 64rem) {
+			position: inherit;
+			left: 0;
+			bottom: 0;
+		}
+	}
+
+	/* Active = yellow + glow */
+	.buy-bonus-icon-container-center.turbo-on {
+		color: #ffd54a; /* yellow */
+		filter: drop-shadow(0 0 6px #ffd54a);
+	}
+
+	/* Disabled during space hold */
+	.buy-bonus-icon-container-center.disabled {
+		opacity: 0.45;
+		pointer-events: none;
+		cursor: not-allowed;
+	}
+
+	.info-button-container {
+		position: absolute;
+		background-color: transparent;
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		top: 1rem;
+		left: 0.5rem;
 	}
 </style>

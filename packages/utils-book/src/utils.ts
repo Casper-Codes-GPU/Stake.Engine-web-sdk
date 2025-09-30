@@ -29,7 +29,7 @@ export function checkIsMultipleRevealEvents<TBookEvent extends BaseBookEvent>({
 	bookEvents,
 }: {
 	bookEvents: TBookEvent[];
-}) {
+	}) {
 	const revealEventCount = bookEvents.filter((bookEvent) => bookEvent.type === 'reveal').length;
 	const isMultipleReveals = revealEventCount > 1;
 	return isMultipleReveals;

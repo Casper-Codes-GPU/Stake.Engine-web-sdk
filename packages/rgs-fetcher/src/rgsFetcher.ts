@@ -1,14 +1,14 @@
-import type { paths } from './schema';
+import type { GetPaths, PostPaths } from './schema';
 import { fetcher } from 'utils-fetcher';
 
 export const rgsFetcher = {
 	post: async function post<
-		T extends keyof paths,
-		TResponse = paths[T]['post']['responses'][200]['content']['application/json'],
+		T extends keyof PostPaths,
+		TResponse = PostPaths[T]['post']['responses'][200]['content']['application/json'],
 	>(options: {
 		url: T;
 		rgsUrl: string;
-		variables?: paths[T]['post']['requestBody']['content']['application/json'];
+		variables?: PostPaths[T]['post']['requestBody']['content']['application/json'];
 	}): Promise<TResponse> {
 		const response = await fetcher({
 			method: 'POST',
@@ -20,10 +20,11 @@ export const rgsFetcher = {
 		const data = await response.json();
 		return data as TResponse;
 	},
+
 	get: async function get<
-		T extends keyof paths,
-		TResponse = paths[T]['get']['responses'][200]['content']['application/json'],
-	>(options: { url: T; rgsUrl: string }): Promise<TResponse> {
+		T extends keyof GetPaths,
+		TResponse = GetPaths[T]['get']['responses'][200],
+	>(options: { url: T; rgsUrl: string; params: GetPaths[T]['get']["urlParams"] }): Promise<TResponse> {
 		const response = await fetcher({
 			method: 'GET',
 			endpoint: `https://${options.rgsUrl}${options.url}`,

@@ -18,6 +18,7 @@ export type IntermediateMachines = {
 	autoBet: IntermediateMachineAutoBet;
 	resumeBet: IntermediateMachineResumeBet;
 	forceResult: IntermediateMachineForceResult;
+	betReplay: IntermediateMachineBet;
 };
 
 export type PrimaryMachines = ReturnType<typeof createPrimaryMachines>;

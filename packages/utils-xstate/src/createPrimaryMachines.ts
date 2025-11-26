@@ -2,9 +2,55 @@ import { fromPromise } from 'xstate';
 
 import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
 import { stateBet, stateUrlDerived, stateForce, stateForceDerived, stateModal } from 'state-shared';
-import { requestBet, requestForceResult, requestEndRound } from 'rgs-requests';
+import { requestBet, requestForceResult, requestEndRound, requestReplay } from 'rgs-requests';
 
 import type { BaseBet } from './types';
+
+type ReplayResponse = Awaited<ReturnType<typeof requestReplay>>;
+
+const REPLAY_DEFAULTS = {
+	roundID: -1,
+	amount: 1,
+	payout: 1 * API_AMOUNT_MULTIPLIER,
+	active: false,
+	mode: '',
+	event: '',
+} as const;
+
+const createReplayBet = <TBet extends BaseBet>(replay: ReplayResponse): TBet => {
+	const bet = { ...replay } as TBet;
+	bet.roundID = REPLAY_DEFAULTS.roundID;
+	bet.amount = REPLAY_DEFAULTS.amount;
+	bet.payout = bet.amount * (bet.payoutMultiplier ?? 0);
+	bet.active = REPLAY_DEFAULTS.active;
+	bet.mode = stateUrlDerived.mode()
+	bet.event = stateUrlDerived.event()
+	return bet as TBet;
+};
+
+export const handleRequestReplay = async ({ onError }: { onError: () => void }) => {
+	try {
+		const data = await requestReplay({
+			rgsUrl: stateUrlDerived.rgsUrl(),
+			game: stateUrlDerived.game(),
+			version: Number(stateUrlDerived.version()),
+			mode: stateUrlDerived.mode(),
+			event: stateUrlDerived.event(),
+		});
+
+		if (data && typeof data === 'object' && 'error' in data && (data as any).error) {
+			throw data;
+		}
+
+		return data;
+	} catch (error) {
+		onError();
+		stateBet.autoSpinsCounter = 0;
+		stateModal.modal = { name: 'error', error };
+		console.error(error);
+		throw error;
+	}
+};
 
 const handleRequestBet = async ({ onError }: { onError: () => void }) => {
 	try {
@@ -39,7 +85,7 @@ const handleRequestBet = async ({ onError }: { onError: () => void }) => {
 	}
 };
 
-const handleRequestEndRound = async () => {
+export const handleRequestEndRound = async () => {
 	try {
 		const data = await requestEndRound({
 			sessionID: stateUrlDerived.sessionID(),
@@ -64,7 +110,7 @@ const handleRequestEndRound = async () => {
 	}
 };
 
-const handleUpdateBalance = ({ balanceAmountFromApi }: { balanceAmountFromApi: number }) => {
+export const handleUpdateBalance = ({ balanceAmountFromApi }: { balanceAmountFromApi: number }) => {
 	stateBet.balanceAmount = balanceAmountFromApi / API_AMOUNT_MULTIPLIER;
 };
 
@@ -75,6 +121,7 @@ type Options<TBet extends BaseBet> = {
 	onNewGameError: () => any;
 	onPlayGame: (bet: TBet) => Promise<void>;
 	checkIsBonusGame: (bet: TBet) => boolean;
+	onReplayGameStart: () => Promise<void> | undefined;
 };
 
 function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
@@ -85,6 +132,7 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 		onNewGameError,
 		onPlayGame,
 		checkIsBonusGame,
+		onReplayGameStart,
 	} = options;
 
 	let balanceAmountFromApiHolder: null | number = null;
@@ -155,6 +203,23 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 
 		return { bet: null };
 	});
+
+	const replayGame = fromPromise(async () => {
+		await onReplayGameStart();
+
+		const data = await handleRequestReplay({ onError: onNewGameError });
+
+		if (data) {
+			const bet = createReplayBet<TBet>(data);
+			const betType = getBetType({ bet });
+			await BET_TYPE_METHODS_MAP[betType].newGame();
+
+			return { bet };
+		}
+
+		return { bet: null };
+
+	})
 
 	// resumeGame
 	const resumeGame = fromPromise(async () => {
@@ -300,6 +365,7 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 		endGame,
 		resumeGame,
 		forceGame,
+		replayGame,
 	};
 }
 

@@ -12,7 +12,7 @@ type OneOf<T extends any[]> = T extends [infer Only]
 		? OneOf<[XOR<A, B>, ...Rest]>
 		: never;
 
-export interface paths {
+export type PostPaths = {
 	'/wallet/authenticate': {
 		/**
 		 * Authenticate Player Request
@@ -41,6 +41,13 @@ export interface paths {
 		 */
 		post: operations['end-round'];
 	};
+	'/bet/replay': {
+		/**
+		 * Bet Replay
+		 * @description This endpoint returns the replay data for a bet.
+		 */
+		post: operations['play']; // TODO: hacky so types can resolve, but this is not really used
+	};
 	'/bet/event': {
 		/**
 		 * Bet Event
@@ -68,7 +75,19 @@ export interface paths {
 		 */
 		post: operations['search'];
 	};
-}
+};
+
+export type GetPaths = {
+	'/bet/replay': {
+		/**
+		 * Bet Replay
+		 * @description This endpoint returns the replay data for a bet.
+		 */
+		get: operations['replay'];
+	};
+};
+
+export type paths = PostPaths | GetPaths;
 
 export type webhooks = Record<string, never>;
 
@@ -83,6 +102,17 @@ export interface components {
 			wildMult?: number;
 			gameType?: string;
 		};
+		req_replay: {
+			game: components['schemas']['Game'];
+			version: components['schemas']['Version'];
+			mode: components['schemas']['Mode'];
+			event: components['schemas']['Event'];
+		};
+		res_replay: {
+			payoutMultiplier?: components['schemas']['PayoutMultiplier'];
+			costMultiplier?: components['schemas']['CostMultiplier'];
+			state?: components['schemas']['GameState'];
+		}
 		req_search: {
 			mode?: components['schemas']['Mode'];
 			search?: components['schemas']['Search'];
@@ -170,8 +200,13 @@ export interface components {
 		 * @description Payout Multiplier for the bet. Payout / Amount.
 		 */
 		PayoutMultiplier: number;
+		CostMultiplier: number;
 		/** @description Active is whether a bet is still being played and is currently active. */
 		Active: boolean;
+		/** @description Game ID */
+		Game: string;
+		/** @description Game version */
+		Version: number;
 		/** @description Mode indicates the type of bet the PLAYER is making. Every operator will need to have their own conventions for the mode. */
 		Mode: string;
 		/** @description Event information that the Provider needs to track the bet progress. This event along with the previous bet will be passed back in the /wallet/authenticate request. */
@@ -397,6 +432,13 @@ export interface operations {
 			};
 		};
 	};
+
+	replay: {
+		urlParams: components['schemas']['req_replay'];
+		responses: {
+			200: components['schemas']['res_replay']
+		}
+	}
 	/**
 	 * Player Round End
 	 * @description This API endpoint triggers an end round to occur. No futher actions can be made for this round. A payout request will be sent to the operator.

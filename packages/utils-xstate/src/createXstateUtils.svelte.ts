@@ -7,6 +7,7 @@ import {
 	STATE_AUTOBET,
 	STATE_RESUME_BET,
 	STATE_FORCE_RESULT,
+	STATE_REPLAY,
 } from './constants';
 
 export const createXstate = () => {
@@ -24,6 +25,7 @@ export const createXstate = () => {
 		isAutoBetting: () => matchesXstate(STATE_AUTOBET),
 		isResumingBet: () => matchesXstate(STATE_RESUME_BET),
 		isForcingResult: () => matchesXstate(STATE_FORCE_RESULT),
+		isReplaying: () => matchesXstate(STATE_REPLAY),
 		isPlaying: () => !matchesXstate(STATE_RENDERING) && !matchesXstate(STATE_IDLE),
 	};
 

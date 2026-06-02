@@ -2,7 +2,7 @@
   "name": "twist-turbo",
   "version": "0.0.0",
   "private": true,
-	"license": "MIT",
+  "license": "MIT",
   "scripts": {
     "lint": "turbo run lint",
     "format": "turbo run format",
@@ -32,5 +32,13 @@
       "esbuild",
       "svelte-preprocess"
     ]
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "3.3.1",
+    "@eslint/js": "9.21.0",
+    "@typescript-eslint/eslint-plugin": "8.35.1",
+    "@typescript-eslint/parser": "8.35.1",
+    "eslint-plugin-svelte": "3.19.0",
+    "globals": "16.0.0"
   }
 }

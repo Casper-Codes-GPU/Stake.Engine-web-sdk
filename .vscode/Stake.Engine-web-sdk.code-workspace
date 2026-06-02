@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Stake.Engine-Math-SDK",
+			"path": "../../Stake.Engine-Math-SDK"
+		}
+	],
+	"settings": {
+		"workbench.iconTheme": "material-icon-theme",
+		"workbench.colorTheme": "Atom One Dark",
+		"workbench.statusBar.visible": true,
+		"breadcrumbs.enabled": true,
+		"terminal.integrated.env.osx": {
+			"FIG_NEW_SESSION": "1"
+		},
+		"svelte.enable-ts-plugin": true,
+		"svelte.plugin.css.globals": "stake-kit/src/styles/base.scss,stake-kit/src/styles/theme-stake.scss",
+		"explorer.confirmDragAndDrop": false,
+		"window.commandCenter": true,
+		"workbench.editor.empty.hint": "hidden"
+	}
+}

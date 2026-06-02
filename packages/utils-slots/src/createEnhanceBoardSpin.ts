@@ -4,7 +4,7 @@ import { waitForResolve } from 'utils-shared/wait';
 import { stateSlots } from './stateSlots.svelte';
 import type { Reel, GetRawSymbolFromReel } from './types';
 
-export function createEnhanceBoardSpin<TReel extends Reel<any, any>>({
+export function createEnhanceBoardSpin<TReel extends Reel<object, string>>({
 	board,
 }: {
 	board: TReel[];
@@ -63,9 +63,9 @@ export function createEnhanceBoardSpin<TReel extends Reel<any, any>>({
 				noStop,
 				spinType,
 				symbols,
-				// @ts-ignore Ignored because paddingReel is not required by createCascadingReel
+				// @ts-expect-error paddingReel is not required by createCascadingReel
 				paddingReel,
-				// @ts-ignore Ignored because paddingPosition is not required by createCascadingReel
+				// @ts-expect-error paddingPosition is not required by createCascadingReel
 				paddingPosition,
 				previousPaddingSize,
 				onSpinFinishing: () => {

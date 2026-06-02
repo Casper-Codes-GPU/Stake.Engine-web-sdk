@@ -3,7 +3,7 @@ import { stateBet } from 'state-shared';
 import type { Reel, GetRawSymbolFromReel } from './types';
 import { stateSlots } from './stateSlots.svelte';
 
-export function createEnhanceBoardPreSpin<TReel extends Reel<any, any>>({
+export function createEnhanceBoardPreSpin<TReel extends Reel<object, string>>({
 	board,
 }: {
 	board: TReel[];
@@ -17,7 +17,7 @@ export function createEnhanceBoardPreSpin<TReel extends Reel<any, any>>({
 
 		await Promise.all(
 			board.map((reel, reelIndex) => {
-				// @ts-ignore Ignored because paddingReel is not required by createCascadingReel
+				// @ts-expect-error paddingReel is not required by createCascadingReel
 				return reel.preSpin({ isTurboBeforeAll, preSpinPaddingReel: paddingBoard?.[reelIndex] });
 			}),
 		);

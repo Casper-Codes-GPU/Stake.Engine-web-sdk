@@ -75,6 +75,6 @@ export type FallOptionsTurbo = {
 	fallOutIntervalTurbo: number;
 };
 
-export type GetRawSymbolFromReel<TReel extends Reel<any, any>> = NonNullable<
+export type GetRawSymbolFromReel<TReel extends Reel<object, string>> = NonNullable<
 	FirstArgOf<TReel['setSymbolsWithRawSymbols']>
 >[number];

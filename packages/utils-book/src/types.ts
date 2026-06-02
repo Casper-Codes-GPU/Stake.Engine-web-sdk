@@ -1,8 +1,8 @@
 export type BaseBookEvent = { index: number; type: string };
 type BookEventUnionTypeToBookEventHandlerUnionType<
-	TBookEvent,
+	TBookEvent extends object,
 	THandlerContext extends object,
-> = TBookEvent extends any
+> = TBookEvent extends object
 	? (bookEvent: TBookEvent, context: THandlerContext) => Promise<void>
 	: never;
 export type BookEventHandler<
@@ -13,7 +13,7 @@ export type BookEventHandlerMap<
 	TBookEvent extends BaseBookEvent,
 	THandlerContext extends object,
 > = Record<string, BookEventHandler<TBookEvent, THandlerContext>>;
-export type GetBookEventFromMap<T extends BookEventHandlerMap<any, any>> =
-	T extends BookEventHandlerMap<infer U, any> ? U : never;
-export type GetBookEventContextFromMap<T extends BookEventHandlerMap<any, any>> =
-	T extends BookEventHandlerMap<any, infer U> ? U : never;
+export type GetBookEventFromMap<T extends BookEventHandlerMap<object, object>> =
+	T extends BookEventHandlerMap<infer U, object> ? U : never;
+export type GetBookEventContextFromMap<T extends BookEventHandlerMap<object, object>> =
+	T extends BookEventHandlerMap<object, infer U> ? U : never;

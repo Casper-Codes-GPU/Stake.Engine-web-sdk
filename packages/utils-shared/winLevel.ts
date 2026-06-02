@@ -51,9 +51,7 @@ function createGetWinLevelDataByBookEventAmount<
 			winLevelToBetAmountMultiplierThresholdMap,
 		)
 			.sort((a, b) => b[1] - a[1])
-			.find(
-				([_, betAmountMultiplierThreshold]) => betAmountMultiplier >= betAmountMultiplierThreshold,
-			) as WinLevelThreshold;
+			.find(([, betAmountMultiplierThreshold]) => betAmountMultiplier >= betAmountMultiplierThreshold) as WinLevelThreshold;
 		const winLevel = winLevelToBetAmountMultiplierThreshold?.[0];
 		const winLevelData = winLevel ? winLevelMap[winLevel] : undefined;
 

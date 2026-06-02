@@ -3,7 +3,7 @@ import { createEnhanceBoardSpin } from './createEnhanceBoardSpin';
 import type { Reel, GetRawSymbolFromReel } from './types';
 
 export function createEnhanceBoard() {
-	function enhanceBoard<TReel extends Reel<any, any>>({ board }: { board: TReel[] }) {
+	function enhanceBoard<TReel extends Reel<object, string>>({ board }: { board: TReel[] }) {
 		type TRawSymbol = GetRawSymbolFromReel<TReel>;
 
 		const { preSpin } = createEnhanceBoardPreSpin({ board });

@@ -1,6 +1,4 @@
-import _ from 'lodash';
-
-import type { RawSymbol, SymbolState } from './types';
+import type { RawSymbol } from './types';
 
 export const SYMBOL_SIZE = 120;
 
